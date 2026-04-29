@@ -1046,21 +1046,17 @@
     window.open(fullReportLink, '_blank');
 
     // Send email via EmailJS
-    emailjs.send('service_mefsi0n', 'template_ay2bie', {
-      to_email:    email,
-      report_link: fullReportLink,
-      name:        'VP of Engineering'
+    const armersLink = 'https://lavonne-ux.github.io/cultural-debt-calculator/cultural-debt-armers-brief.html' + params;
+    emailjs.send('service_mefsi0n', 'fj6x3a8', {
+      to_email:     email,
+      report_link:  fullReportLink,
+      armers_link:  armersLink,
+      name:         'VP of Engineering'
     }).then(() => {
       console.log('Email sent successfully');
     }).catch((err) => {
       console.error('Email send failed:', err);
     });
-
-    // Set Armers brief link with same params (shown in confirmation)
-    setTimeout(() => {
-      const al = document.getElementById('armersLink');
-      if (al) al.href = 'cultural-debt-armers-brief.html' + params;
-    }, 100);
 
     document.querySelector('.cta-card').innerHTML = `
       <div style="padding: 8px 0;">
@@ -1083,26 +1079,10 @@
           Your <strong style="color:white;">Cultural Debt™ Summary</strong> has opened in a new tab.<br>
           A copy is on its way to <strong style="color:white;">${email}</strong>.
         </p>
-        <div style="
-          background: rgba(255,255,255,0.15);
-          border: 1px solid rgba(255,255,255,0.25);
-          border-radius: 8px;
-          padding: 14px 20px;
-          font-size: 12px;
-          color: rgba(255,255,255,0.85);
-          max-width: 380px;
-          margin: 0 auto;
-          line-height: 1.6;
-        ">
-          Your one-page summary is numbers only — ready to share.<br><br>
-          <span style="color:rgba(255,255,255,0.6);">— Consulting team —</span><br>
-          <a href="#" id="armersLink" target="_blank" style="color:white;text-decoration:underline;font-weight:600;">Open Consulting Brief →</a><br>
-          <span style="font-size:11px;opacity:0.7;">Talking points · Mitigation plan · Revenue opportunity</span>
-        </div>
         <p style="
           margin-top: 18px;
           font-size: 11px;
-          color: rgba(255,255,255,0.5);
+          color: rgba(255,255,255,0.6);
           letter-spacing: 0.1em;
           text-transform: uppercase;
         ">Culture Shift Consulting Group · cultureshiftconsultinggroup.com</p>
