@@ -592,7 +592,7 @@
 
   /* CTA */
   .cta-card {
-    background: var(--navy);
+    background: linear-gradient(135deg, #5de0d8 0%, #2db8c5 40%, #1a7fa8 100%);
     border-radius: 14px;
     padding: 28px 24px;
     text-align: center;
@@ -1062,18 +1062,17 @@
       if (al) al.href = 'cultural-debt-armers-brief.html' + params;
     }, 100);
 
-    // Show polished confirmation in the CTA card
     document.querySelector('.cta-card').innerHTML = `
       <div style="padding: 8px 0;">
         <p style="
-          color: #2ec4b6;
+          color: white;
           font-size: 20px;
           font-family: 'Playfair Display', serif;
           font-weight: 600;
           margin-bottom: 10px;
-        ">Your Report Is Ready ✓</p>
+        ">Your Summary Is Ready ✓</p>
         <p style="
-          color: rgba(255,255,255,0.75);
+          color: rgba(255,255,255,0.85);
           font-size: 14px;
           line-height: 1.7;
           margin-bottom: 16px;
@@ -1081,29 +1080,29 @@
           margin-left: auto;
           margin-right: auto;
         ">
-          Your full <strong style="color:white;">Cultural Debt Report™</strong> has opened in a new tab.<br>
+          Your <strong style="color:white;">Cultural Debt™ Summary</strong> has opened in a new tab.<br>
           A copy is on its way to <strong style="color:white;">${email}</strong>.
         </p>
         <div style="
-          background: rgba(255,255,255,0.08);
-          border: 1px solid rgba(255,255,255,0.15);
+          background: rgba(255,255,255,0.15);
+          border: 1px solid rgba(255,255,255,0.25);
           border-radius: 8px;
           padding: 14px 20px;
           font-size: 12px;
-          color: rgba(255,255,255,0.55);
+          color: rgba(255,255,255,0.85);
           max-width: 380px;
           margin: 0 auto;
           line-height: 1.6;
         ">
-          Your one-page summary has opened in a new tab — numbers only, ready to share.<br><br>
-          <span style="color:rgba(255,255,255,0.35);">— Consulting team —</span><br>
-          <a href="#" id="armersLink" target="_blank" style="color:#2ec4b6;text-decoration:underline;font-weight:600;">Open Consulting Brief →</a><br>
-          <span style="font-size:11px;opacity:0.6;">Talking points · Mitigation plan · Revenue opportunity</span>
+          Your one-page summary is numbers only — ready to share.<br><br>
+          <span style="color:rgba(255,255,255,0.6);">— Consulting team —</span><br>
+          <a href="#" id="armersLink" target="_blank" style="color:white;text-decoration:underline;font-weight:600;">Open Consulting Brief →</a><br>
+          <span style="font-size:11px;opacity:0.7;">Talking points · Mitigation plan · Revenue opportunity</span>
         </div>
         <p style="
           margin-top: 18px;
           font-size: 11px;
-          color: rgba(255,255,255,0.35);
+          color: rgba(255,255,255,0.5);
           letter-spacing: 0.1em;
           text-transform: uppercase;
         ">Culture Shift Consulting Group · cultureshiftconsultinggroup.com</p>
