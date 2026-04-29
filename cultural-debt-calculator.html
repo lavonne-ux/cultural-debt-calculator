@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cultural Debt Calculator — Culture Shift Consulting Group</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal:        #2ec4b6;
+    --teal-dark:   #1a9e93;
+    --teal-light:  #7ee8e1;
+    --aqua-grad:   linear-gradient(135deg, #5de0d8 0%, #2db8c5 40%, #1a7fa8 100%);
+    --navy:        #0f1f3d;
+    --navy-mid:    #1b3358;
+    --white:       #ffffff;
+    --off-white:   #f4fafa;
+    --muted:       #5a7a8a;
+    --border:      rgba(46,196,182,0.2);
+    --shadow:      0 8px 32px rgba(15,31,61,0.10);
+    --green:       #3ecf7a;
+    --blue-prism:  #2451b7;
+    --amber:       #f4a261;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--off-white);
+    color: var(--navy);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .hero-bar {
+    background: var(--aqua-grad);
+    padding: 48px 24px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bar::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0; right: 0;
+    height: 60px;
+    background: var(--off-white);
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+
+  .logo-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .logo-text {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--white);
+    letter-spacing: 0.05em;
+    line-height: 1.3;
+    text-align: left;
+  }
+
+  .logo-text span {
+    display: block;
+    font-weight: 300;
+    font-size: 11px;
+    opacity: 0.85;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 12px;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(30px, 6vw, 52px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 14px;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .hero-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.85);
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* Role tags */
+  .role-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .role-tag {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--white);
+    letter-spacing: 0.08em;
+  }
+
+  .wrapper {
+    max-width: 720px;
+    margin: -30px auto 0;
+    padding: 0 20px 80px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .card {
+    background: var(--white);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    padding: 36px 32px;
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 520px) { .card { padding: 24px 18px; } }
+
+  .steps {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 28px;
+  }
+
+  .step-pill {
+    flex: 1;
+    height: 6px;
+    border-radius: 3px;
+    background: #e0eef0;
+    transition: background 0.4s ease;
+  }
+
+  .step-pill.active { background: var(--teal); }
+  .step-pill.done   { background: var(--teal-dark); }
+
+  .step-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--teal-dark);
+    margin-bottom: 6px;
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+
+  .card-desc {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 28px;
+    line-height: 1.6;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+
+  @media (max-width: 500px) { .grid-2 { grid-template-columns: 1fr; } }
+
+  .input-group { margin-bottom: 20px; }
+
+  label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  label sub {
+    font-size: 10px;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--teal-dark);
+    margin-left: 4px;
+  }
+
+  .input-wrap { position: relative; }
+
+  .prefix {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--teal-dark);
+    font-weight: 600;
+    font-size: 15px;
+    pointer-events: none;
+  }
+
+  .suffix {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+    font-size: 13px;
+    pointer-events: none;
+  }
+
+  input[type="number"], input[type="text"] {
+    width: 100%;
+    border: 1.5px solid #d0e8ec;
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    color: var(--navy);
+    background: var(--off-white);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    -moz-appearance: textfield;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+
+  input[type="number"]:focus, input[type="text"]:focus {
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(46,196,182,0.15);
+    background: #fff;
+  }
+
+  .has-prefix input { padding-left: 32px; }
+  .has-suffix input { padding-right: 42px; }
+
+  /* Team type selector */
+  .team-selector {
+    margin-bottom: 24px;
+  }
+
+  .team-selector label {
+    margin-bottom: 12px;
+  }
+
+  .team-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .team-btn {
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1.5px solid #d0e8ec;
+    background: var(--off-white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .team-btn.selected {
+    background: var(--teal);
+    border-color: var(--teal);
+    color: var(--white);
+  }
+
+  .team-btn:hover:not(.selected) {
+    border-color: var(--teal);
+    color: var(--teal-dark);
+  }
+
+  /* Sliders */
+  .slider-block {
+    background: var(--off-white);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+    border: 1px solid #e2f0f2;
+    transition: border-color 0.2s;
+  }
+
+  .slider-block:hover { border-color: var(--teal-light); }
+
+  .slider-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 4px;
+    gap: 12px;
+  }
+
+  .slider-name-wrap { flex: 1; }
+
+  .slider-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--navy);
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .slider-sublabel {
+    font-size: 11px;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .slider-pct {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--teal-dark);
+    white-space: nowrap;
+    margin-top: 2px;
+  }
+
+  input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 4px;
+    background: #cde8ec;
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+    margin: 10px 0 6px;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--teal);
+    box-shadow: 0 2px 8px rgba(46,196,182,0.4);
+    cursor: pointer;
+    transition: transform 0.15s;
+  }
+
+  input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+
+  .slider-hint {
+    font-size: 11px;
+    color: var(--muted);
+    opacity: 0.7;
+  }
+
+  /* Sections */
+  .section { display: none; animation: fadeUp 0.35s ease; }
+  .section.active { display: block; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 32px;
+  }
+
+  .btn {
+    padding: 13px 28px;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+  }
+
+  .btn-primary {
+    background: var(--aqua-grad);
+    color: var(--white);
+    flex: 1;
+    max-width: 300px;
+    margin-left: auto;
+    box-shadow: 0 4px 14px rgba(46,196,182,0.35);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(46,196,182,0.45);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--muted);
+    border: 1.5px solid #d0e8ec;
+  }
+
+  .btn-ghost:hover { border-color: var(--teal); color: var(--teal-dark); }
+
+  /* Results */
+  .result-hero {
+    background: var(--aqua-grad);
+    border-radius: 14px;
+    padding: 40px 28px;
+    text-align: center;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .result-hero::before {
+    content: '';
+    position: absolute;
+    top: -30px; right: -30px;
+    width: 150px; height: 150px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    pointer-events: none;
+  }
+
+  .result-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 10px;
+  }
+
+  .result-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(44px, 12vw, 76px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+  }
+
+  .result-note {
+    font-size: 13px;
+    color: rgba(255,255,255,0.85);
+    max-width: 420px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* Debt label badge */
+  .debt-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 20px;
+    padding: 4px 16px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 14px;
+  }
+
+  /* Breakdown */
+  .breakdown-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 500px) { .breakdown-grid { grid-template-columns: 1fr; } }
+
+  .bc {
+    background: var(--off-white);
+    border: 1.5px solid #e2f0f2;
+    border-top: 3px solid var(--teal);
+    border-radius: 10px;
+    padding: 18px 16px;
+  }
+
+  .bc-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .bc-sublabel {
+    font-size: 10px;
+    color: var(--teal-dark);
+    font-style: italic;
+    margin-bottom: 8px;
+    opacity: 0.8;
+  }
+
+  .bc-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--navy-mid);
+    margin-bottom: 4px;
+  }
+
+  .bc-desc {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* Severity indicator */
+  .severity-bar {
+    margin: 20px 0;
+    background: var(--off-white);
+    border: 1.5px solid #e2f0f2;
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+
+  .severity-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .severity-track {
+    height: 10px;
+    background: #d0e8ec;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
+
+  .severity-fill {
+    height: 100%;
+    border-radius: 5px;
+    background: linear-gradient(90deg, var(--teal), #f4a261, #e05555);
+    transition: width 1s ease;
+  }
+
+  .severity-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: var(--muted);
+  }
+
+  .severity-tier {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-top: 8px;
+  }
+
+  /* CTA */
+  .cta-card {
+    background: var(--navy);
+    border-radius: 14px;
+    padding: 28px 24px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .cta-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .cta-card p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+
+  .email-row {
+    display: flex;
+    gap: 10px;
+    max-width: 440px;
+    margin: 0 auto;
+  }
+
+  .email-row input {
+    flex: 1;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: var(--white);
+    padding: 12px 14px;
+    font-size: 14px;
+    border-radius: 8px;
+  }
+
+  .email-row input::placeholder { color: rgba(255,255,255,0.4); }
+
+  .email-row input:focus {
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(46,196,182,0.2);
+    background: rgba(255,255,255,0.15);
+    outline: none;
+  }
+
+  .email-row .btn-primary { max-width: none; margin-left: 0; flex-shrink: 0; }
+
+  .reset-link {
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    margin-top: 16px;
+    transition: color 0.2s;
+  }
+
+  .reset-link:hover { color: var(--teal-dark); }
+
+  .disclaimer {
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    margin-top: 12px;
+    opacity: 0.6;
+    line-height: 1.6;
+  }
+
+  /* Section divider */
+  .section-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 24px 0 20px;
+  }
+
+  .section-divider span {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--teal-dark);
+    white-space: nowrap;
+  }
+
+  .section-divider::before,
+  .section-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #d0e8ec;
+  }
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero-bar">
+  <div class="logo-row">
+    <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="19,4 30,26 8,26" fill="#3ecf7a" opacity="0.85"/>
+      <polygon points="19,4 30,26 19,26" fill="#2451b7" opacity="0.75"/>
+      <polygon points="19,4 19,26 8,26" fill="#2ec4b6" opacity="0.9"/>
+    </svg>
+    <div class="logo-text">culture shift<span>consulting group</span></div>
+  </div>
+  <div class="hero-eyebrow">Cultural Debt Calculator</div>
+  <div class="hero-title">What Is Incivility<br><em>Costing Your Team?</em></div>
+  <p class="hero-sub">Built for VPs of Engineering. Quantify the real operational cost of workplace incivility across your engineering organization — in under 3 minutes.</p>
+  <div class="role-tags">
+    <span class="role-tag">Engineers</span>
+    <span class="role-tag">Software Developers</span>
+    <span class="role-tag">Machine Learning</span>
+    <span class="role-tag">R&amp;D</span>
+    <span class="role-tag">Product &amp; ML Teams</span>
+  </div>
+</div>
+
+<!-- Main -->
+<div class="wrapper">
+  <div class="card">
+
+    <div class="steps">
+      <div class="step-pill active" id="pill1"></div>
+      <div class="step-pill" id="pill2"></div>
+      <div class="step-pill" id="pill3"></div>
+    </div>
+
+    <!-- SECTION 1: Org Inputs -->
+    <div class="section active" id="section1">
+      <div class="step-label">Step 1 of 2 — Your Organization</div>
+      <div class="card-title">Your Engineering Organization</div>
+      <p class="card-desc">Enter your workforce basics. We use these to calculate the dollar value of what incivility is consuming across your teams.</p>
+
+      <div class="grid-2">
+        <div class="input-group">
+          <label>Total Technical Staff <sub>engineers, devs, ML, R&D</sub></label>
+          <div class="input-wrap">
+            <input type="number" id="employees" placeholder="e.g. 120" min="1"/>
+          </div>
+        </div>
+        <div class="input-group">
+          <label>Avg Annual Compensation <sub>per person</sub></label>
+          <div class="input-wrap has-prefix">
+            <span class="prefix">$</span>
+            <input type="number" id="salary" placeholder="e.g. 145,000" min="1"/>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="input-group">
+          <label>Avg Tenure <sub>years</sub></label>
+          <div class="input-wrap has-suffix">
+            <input type="number" id="tenure" placeholder="e.g. 3" min="1"/>
+            <span class="suffix">yrs</span>
+          </div>
+        </div>
+        <div class="input-group">
+          <label>Replacement Cost <sub>% of salary</sub></label>
+          <div class="input-wrap has-suffix">
+            <input type="number" id="replacePct" placeholder="e.g. 150" min="1" max="300"/>
+            <span class="suffix">%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-selector">
+        <label>Primary Team Type <sub>select all that apply</sub></label>
+        <div class="team-options">
+          <button class="team-btn" onclick="toggleTeam(this)">Engineers</button>
+          <button class="team-btn" onclick="toggleTeam(this)">Software Developers</button>
+          <button class="team-btn" onclick="toggleTeam(this)">Machine Learning</button>
+          <button class="team-btn" onclick="toggleTeam(this)">R&amp;D</button>
+          <button class="team-btn" onclick="toggleTeam(this)">Product Team</button>
+          <button class="team-btn" onclick="toggleTeam(this)">ML Team</button>
+        </div>
+      </div>
+
+      <div class="nav">
+        <button class="btn btn-primary" onclick="goTo(2)">Next: Incivility Factors →</button>
+      </div>
+    </div>
+
+    <!-- SECTION 2: The 5 Incivility Sliders -->
+    <div class="section" id="section2">
+      <div class="step-label">Step 2 of 2 — Cultural Debt Factors</div>
+      <div class="card-title">Where Is Incivility Hiding?</div>
+      <p class="card-desc">Adjust each slider to reflect your organization's current reality. Research-based defaults are pre-loaded — move them to match your environment.</p>
+
+      <!-- Slider 1 -->
+      <div class="slider-block">
+        <div class="slider-top">
+          <div class="slider-name-wrap">
+            <span class="slider-name">Incivility Rate</span>
+            <span class="slider-sublabel">Frequency of disrespectful behavior across engineering teams</span>
+          </div>
+          <span class="slider-pct" id="incivilityVal">35%</span>
+        </div>
+        <input type="range" id="incivilityPct" min="0" max="80" value="35" oninput="updateSlider('incivilityPct','incivilityVal')">
+        <div class="slider-hint">% of staff regularly exposed to uncivil behavior — Research avg: 35% (Porath, Georgetown)</div>
+      </div>
+
+      <!-- Slider 2 -->
+      <div class="slider-block">
+        <div class="slider-top">
+          <div class="slider-name-wrap">
+            <span class="slider-name">Microtoxicity Index</span>
+            <span class="slider-sublabel">Low-level toxic behaviors that go unaddressed — eye rolls, exclusion, dismissiveness</span>
+          </div>
+          <span class="slider-pct" id="microtoxVal">30%</span>
+        </div>
+        <input type="range" id="microtoxPct" min="0" max="70" value="30" oninput="updateSlider('microtoxPct','microtoxVal')">
+        <div class="slider-hint">% of team experiencing recurring microtoxic behavior — Industry avg: 30%</div>
+      </div>
+
+      <!-- Slider 3 -->
+      <div class="slider-block">
+        <div class="slider-top">
+          <div class="slider-name-wrap">
+            <span class="slider-name">Challenger Safety Deficit</span>
+            <span class="slider-sublabel">Developers too intimidated to share ideas or push back with senior staff</span>
+          </div>
+          <span class="slider-pct" id="challengerVal">40%</span>
+        </div>
+        <input type="range" id="challengerPct" min="0" max="80" value="40" oninput="updateSlider('challengerPct','challengerVal')">
+        <div class="slider-hint">% of developers who self-censor due to fear of response — Engineering avg: 40%</div>
+      </div>
+
+      <!-- Slider 4 -->
+      <div class="slider-block">
+        <div class="slider-top">
+          <div class="slider-name-wrap">
+            <span class="slider-name">Feedback Vagueness Rate</span>
+            <span class="slider-sublabel">Performance conversations that are unclear, avoidant, or conflict-averse</span>
+          </div>
+          <span class="slider-pct" id="vagueFeedbackVal">45%</span>
+        </div>
+        <input type="range" id="vagueFeedbackPct" min="0" max="80" value="45" oninput="updateSlider('vagueFeedbackPct','vagueFeedbackVal')">
+        <div class="slider-hint">% of feedback conversations lacking clarity or follow-through — Avg: 45%</div>
+      </div>
+
+      <!-- Slider 5 -->
+      <div class="slider-block">
+        <div class="slider-top">
+          <div class="slider-name-wrap">
+            <span class="slider-name">Feedback Timeliness Gap</span>
+            <span class="slider-sublabel">Critical feedback delivered too late to course correct performance</span>
+          </div>
+          <span class="slider-pct" id="lateFeeedbackVal">38%</span>
+        </div>
+        <input type="range" id="lateFeedbackPct" min="0" max="80" value="38" oninput="updateSlider('lateFeedbackPct','lateFeeedbackVal')">
+        <div class="slider-hint">% of performance issues where feedback arrived too late — Avg: 38%</div>
+      </div>
+
+      <div class="nav">
+        <button class="btn btn-ghost" onclick="goTo(1)">← Back</button>
+        <button class="btn btn-primary" onclick="calculate()">Calculate Cultural Debt →</button>
+      </div>
+    </div>
+
+    <!-- SECTION 3: Results -->
+    <div class="section" id="section3">
+      <div class="step-label">Your Cultural Debt Report</div>
+
+      <div class="result-hero">
+        <div class="debt-badge">Cultural Debt™</div>
+        <div class="result-eyebrow">Estimated Annual Cost of Incivility</div>
+        <div class="result-amount" id="totalCost">$0</div>
+        <div class="result-note">This is what workplace incivility is costing your engineering organization every year — across productivity loss, innovation suppression, attrition, and broken feedback loops.</div>
+      </div>
+
+      <!-- Severity bar -->
+      <div class="severity-bar">
+        <div class="severity-label">Cultural Debt Severity</div>
+        <div class="severity-track">
+          <div class="severity-fill" id="severityFill" style="width: 0%"></div>
+        </div>
+        <div class="severity-labels">
+          <span>Managed</span>
+          <span>Moderate</span>
+          <span>Severe</span>
+          <span>Critical</span>
+        </div>
+        <div class="severity-tier" id="severityTier">—</div>
+      </div>
+
+      <div class="card-title" style="margin-bottom:14px;">Cost Breakdown by Debt Driver</div>
+      <div class="breakdown-grid">
+        <div class="bc">
+          <div class="bc-label">Incivility & Microtoxicity</div>
+          <div class="bc-sublabel">Productivity drain across all teams</div>
+          <div class="bc-amount" id="incivilCost">—</div>
+          <div class="bc-desc">Cost of time lost recovering from uncivil and microtoxic incidents</div>
+        </div>
+        <div class="bc">
+          <div class="bc-label">Challenger Safety Deficit</div>
+          <div class="bc-sublabel">Innovation & velocity suppression</div>
+          <div class="bc-amount" id="challengerCost">—</div>
+          <div class="bc-desc">Ideas withheld, bugs unreported, solutions delayed by fear-based silence</div>
+        </div>
+        <div class="bc">
+          <div class="bc-label">Vague Feedback Cost</div>
+          <div class="bc-sublabel">Misdirected effort & rework</div>
+          <div class="bc-amount" id="vagueCost">—</div>
+          <div class="bc-desc">Cost of work done incorrectly due to unclear performance direction</div>
+        </div>
+        <div class="bc">
+          <div class="bc-label">Late Feedback & Attrition</div>
+          <div class="bc-sublabel">Turnover & replacement cost</div>
+          <div class="bc-amount" id="attritionCost">—</div>
+          <div class="bc-desc">Senior talent lost when performance issues go unaddressed until exit</div>
+        </div>
+      </div>
+
+      <div class="cta-card">
+        <h3>Get the Full Cultural Debt Report</h3>
+        <p>Receive a detailed breakdown by team type, benchmark comparisons, and a recommended intervention roadmap — delivered to your inbox.</p>
+        <div class="email-row">
+          <input type="text" id="emailInput" placeholder="Your work email"/>
+          <button class="btn btn-primary" onclick="sendReport()">Send My Report</button>
+        </div>
+      </div>
+
+      <div class="disclaimer">Estimates based on industry research including Porath (Georgetown), Gallup, and McKinsey engineering benchmarks.<br>Culture Shift Consulting Group · cultureshiftconsultinggroup.com</div>
+      <span class="reset-link" onclick="resetCalc()">← Start over with new numbers</span>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function toggleTeam(btn) {
+    btn.classList.toggle('selected');
+  }
+
+  function updateSlider(sid, vid) {
+    document.getElementById(vid).textContent = document.getElementById(sid).value + '%';
+  }
+
+  function fmt(n) {
+    return '$' + Math.round(n).toLocaleString('en-US');
+  }
+
+  function goTo(n) {
+    if (n === 2) {
+      const emp = parseFloat(document.getElementById('employees').value);
+      const sal = parseFloat(document.getElementById('salary').value);
+      if (!emp || !sal) {
+        alert('Please enter Total Technical Staff and Average Annual Compensation to continue.');
+        return;
+      }
+    }
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.getElementById('section' + n).classList.add('active');
+    ['pill1','pill2','pill3'].forEach((id, i) => {
+      const p = document.getElementById(id);
+      p.classList.remove('active','done');
+      if (i + 1 < n) p.classList.add('done');
+      else if (i + 1 === n) p.classList.add('active');
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function calculate() {
+    const employees       = parseFloat(document.getElementById('employees').value) || 0;
+    const salary          = parseFloat(document.getElementById('salary').value) || 0;
+    const replacePct      = parseFloat(document.getElementById('replacePct').value) || 150;
+    const incivilityPct   = parseFloat(document.getElementById('incivilityPct').value) / 100;
+    const microtoxPct     = parseFloat(document.getElementById('microtoxPct').value) / 100;
+    const challengerPct   = parseFloat(document.getElementById('challengerPct').value) / 100;
+    const vaguePct        = parseFloat(document.getElementById('vagueFeedbackPct').value) / 100;
+    const latePct         = parseFloat(document.getElementById('lateFeedbackPct').value) / 100;
+
+    if (!employees || !salary) {
+      alert('Please complete your organization inputs first.');
+      goTo(1);
+      return;
+    }
+
+    const totalPayroll = employees * salary;
+
+    // Incivility + microtoxicity: Porath research — 80% lose work time, avg 7 min/day lost per affected employee
+    const affectedByIncivility = employees * Math.max(incivilityPct, microtoxPct);
+    const incivilCost = affectedByIncivility * salary * 0.048; // ~5% productivity drain
+
+    // Challenger safety: suppressed ideas, unreported bugs, delayed solutions
+    // Engineers earning $145K suppressing ideas = conservatively 15% of value output lost
+    const challengerCost = employees * challengerPct * salary * 0.15;
+
+    // Vague feedback: rework cost — avg 20% of effort misdirected
+    const vagueCost = totalPayroll * vaguePct * 0.20;
+
+    // Late feedback → attrition: % of staff affected who eventually leave
+    const atRiskStaff = employees * latePct * 0.18; // 18% of those with late feedback eventually exit
+    const attritionCost = atRiskStaff * salary * (replacePct / 100);
+
+    const total = incivilCost + challengerCost + vagueCost + attritionCost;
+
+    document.getElementById('totalCost').textContent   = fmt(total);
+    document.getElementById('incivilCost').textContent  = fmt(incivilCost);
+    document.getElementById('challengerCost').textContent = fmt(challengerCost);
+    document.getElementById('vagueCost').textContent   = fmt(vagueCost);
+    document.getElementById('attritionCost').textContent = fmt(attritionCost);
+
+    // Severity scoring
+    const avgPct = (incivilityPct + microtoxPct + challengerPct + vaguePct + latePct) / 5;
+    const severityPct = Math.min(avgPct * 200, 100);
+    document.getElementById('severityFill').style.width = severityPct + '%';
+
+    let tier = '';
+    if (avgPct < 0.20)      tier = 'Managed — Early intervention recommended';
+    else if (avgPct < 0.35) tier = 'Moderate — Cultural debt is accumulating';
+    else if (avgPct < 0.50) tier = 'Severe — Significant operational impact underway';
+    else                     tier = 'Critical — Immediate culture intervention required';
+
+    document.getElementById('severityTier').textContent = tier;
+
+    goTo(3);
+  }
+
+  function sendReport() {
+    const email = document.getElementById('emailInput').value.trim();
+    if (!email || !email.includes('@')) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+
+    // Build URL params so numbers pass directly into both reports
+    const total          = document.getElementById('totalCost').textContent.replace(/[$,]/g,'');
+    const incivilCost    = document.getElementById('incivilCost').textContent.replace(/[$,]/g,'');
+    const challengerCost = document.getElementById('challengerCost').textContent.replace(/[$,]/g,'');
+    const vagueCost      = document.getElementById('vagueCost').textContent.replace(/[$,]/g,'');
+    const attritionCost  = document.getElementById('attritionCost').textContent.replace(/[$,]/g,'');
+    const incivilityPct  = document.getElementById('incivilityPct').value;
+    const challengerPct  = document.getElementById('challengerPct').value;
+    const vaguePct       = document.getElementById('vagueFeedbackPct').value;
+    const latePct        = document.getElementById('lateFeedbackPct').value;
+    const microtoxPct    = document.getElementById('microtoxPct').value;
+    const avgPct         = (parseFloat(incivilityPct)+parseFloat(microtoxPct)+parseFloat(challengerPct)+parseFloat(vaguePct)+parseFloat(latePct))/500;
+
+    const params = `?total=${total}&ic=${incivilCost}&cc=${challengerCost}&vc=${vagueCost}&ac=${attritionCost}&ip=${incivilityPct}&cp=${challengerPct}&vp=${vaguePct}&lp=${latePct}&avg=${avgPct.toFixed(3)}`;
+
+    // VP gets the terse one-page summary with numbers in URL
+    window.open('cultural-debt-vp-summary.html' + params, '_blank');
+
+    // Set Armers brief link with same params (shown in confirmation)
+    setTimeout(() => {
+      const al = document.getElementById('armersLink');
+      if (al) al.href = 'cultural-debt-armers-brief.html' + params;
+    }, 100);
+
+    // Show polished confirmation in the CTA card
+    document.querySelector('.cta-card').innerHTML = `
+      <div style="padding: 8px 0;">
+        <p style="
+          color: #2ec4b6;
+          font-size: 20px;
+          font-family: 'Playfair Display', serif;
+          font-weight: 600;
+          margin-bottom: 10px;
+        ">Your Report Is Ready ✓</p>
+        <p style="
+          color: rgba(255,255,255,0.75);
+          font-size: 14px;
+          line-height: 1.7;
+          margin-bottom: 16px;
+          max-width: 380px;
+          margin-left: auto;
+          margin-right: auto;
+        ">
+          Your full <strong style="color:white;">Cultural Debt Report™</strong> has opened in a new tab.<br>
+          A copy is on its way to <strong style="color:white;">${email}</strong>.
+        </p>
+        <div style="
+          background: rgba(255,255,255,0.08);
+          border: 1px solid rgba(255,255,255,0.15);
+          border-radius: 8px;
+          padding: 14px 20px;
+          font-size: 12px;
+          color: rgba(255,255,255,0.55);
+          max-width: 380px;
+          margin: 0 auto;
+          line-height: 1.6;
+        ">
+          Your one-page summary has opened in a new tab — numbers only, ready to share.<br><br>
+          <span style="color:rgba(255,255,255,0.35);">— Consulting team —</span><br>
+          <a href="#" id="armersLink" target="_blank" style="color:#2ec4b6;text-decoration:underline;font-weight:600;">Open Consulting Brief →</a><br>
+          <span style="font-size:11px;opacity:0.6;">Talking points · Mitigation plan · Revenue opportunity</span>
+        </div>
+        <p style="
+          margin-top: 18px;
+          font-size: 11px;
+          color: rgba(255,255,255,0.35);
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+        ">Culture Shift Consulting Group · cultureshiftconsultinggroup.com</p>
+      </div>
+    `;
+  }
+
+  function resetCalc() {
+    ['employees','salary','tenure','replacePct'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('incivilityPct').value  = 35;
+    document.getElementById('microtoxPct').value    = 30;
+    document.getElementById('challengerPct').value  = 40;
+    document.getElementById('vagueFeedbackPct').value = 45;
+    document.getElementById('lateFeedbackPct').value  = 38;
+    [
+      ['incivilityVal','35%'],
+      ['microtoxVal','30%'],
+      ['challengerVal','40%'],
+      ['vagueFeedbackVal','45%'],
+      ['lateFeeedbackVal','38%']
+    ].forEach(([id,v]) => document.getElementById(id).textContent = v);
+    document.querySelectorAll('.team-btn').forEach(b => b.classList.remove('selected'));
+    goTo(1);
+  }
+</script>
+</body>
+</html>
