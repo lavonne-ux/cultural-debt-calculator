@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cultural Debt Calculator — Culture Shift Consulting Group</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>emailjs.init('kTIzJ4hpEYE4LWi-w');</script>
 <style>
   :root {
     --teal:        #2ec4b6;
@@ -1037,8 +1039,22 @@
 
     const params = `?total=${total}&ic=${incivilCost}&cc=${challengerCost}&vc=${vagueCost}&ac=${attritionCost}&ip=${incivilityPct}&cp=${challengerPct}&vp=${vaguePct}&lp=${latePct}&avg=${avgPct.toFixed(3)}`;
 
-    // VP gets the terse one-page summary with numbers in URL
-    window.open('cultural-debt-vp-summary.html' + params, '_blank');
+    // Full report URL with numbers
+    const fullReportLink = 'https://lavonne-ux.github.io/cultural-debt-calculator/cultural-debt-vp-summary.html' + params;
+
+    // Open VP summary in new tab
+    window.open(fullReportLink, '_blank');
+
+    // Send email via EmailJS
+    emailjs.send('service_mefsi0n', 'template_ay2bie', {
+      to_email:    email,
+      report_link: fullReportLink,
+      name:        'VP of Engineering'
+    }).then(() => {
+      console.log('Email sent successfully');
+    }).catch((err) => {
+      console.error('Email send failed:', err);
+    });
 
     // Set Armers brief link with same params (shown in confirmation)
     setTimeout(() => {
