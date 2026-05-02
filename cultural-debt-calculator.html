@@ -771,7 +771,6 @@
           <button class="team-btn" onclick="toggleTeam(this)">Machine Learning</button>
           <button class="team-btn" onclick="toggleTeam(this)">R&amp;D</button>
           <button class="team-btn" onclick="toggleTeam(this)">Product Team</button>
-          <button class="team-btn" onclick="toggleTeam(this)">ML Team</button>
         </div>
       </div>
 
@@ -780,75 +779,75 @@
       </div>
     </div>
 
-    <!-- SECTION 2: The 5 Incivility Sliders -->
+    <!-- SECTION 2: The 5 Cultural Debt Sliders -->
     <div class="section" id="section2">
       <div class="step-label">Step 2 of 2 — Cultural Debt Factors</div>
-      <div class="card-title">Where Is Incivility Hiding?</div>
+      <div class="card-title">Where Is Cultural Debt Accumulating?</div>
       <p class="card-desc">Adjust each slider to reflect your organization's current reality. Research-based defaults are pre-loaded — move them to match your environment.</p>
 
       <!-- Slider 1 -->
       <div class="slider-block">
         <div class="slider-top">
           <div class="slider-name-wrap">
-            <span class="slider-name">Incivility Rate</span>
-            <span class="slider-sublabel">Frequency of disrespectful behavior across engineering teams</span>
+            <span class="slider-name">Manager Capability Gap</span>
+            <span class="slider-sublabel">Managers lack skills to lead, develop, and retain technical talent effectively</span>
           </div>
-          <span class="slider-pct" id="incivilityVal">35%</span>
+          <span class="slider-pct" id="incivilityVal">40%</span>
         </div>
-        <input type="range" id="incivilityPct" min="0" max="80" value="35" oninput="updateSlider('incivilityPct','incivilityVal')">
-        <div class="slider-hint">% of staff regularly exposed to uncivil behavior — Research avg: 35% (Porath, Georgetown)</div>
+        <input type="range" id="incivilityPct" min="0" max="80" value="40" oninput="updateSlider('incivilityPct','incivilityVal')">
+        <div class="slider-hint">% of managers operating below capability threshold for their team's needs — Research avg: 40%</div>
       </div>
 
       <!-- Slider 2 -->
       <div class="slider-block">
         <div class="slider-top">
           <div class="slider-name-wrap">
-            <span class="slider-name">Microtoxicity Index</span>
-            <span class="slider-sublabel">Low-level toxic behaviors that go unaddressed — eye rolls, exclusion, dismissiveness</span>
+            <span class="slider-name">AI Cultural Debt</span>
+            <span class="slider-sublabel">Resistance, fear, or misalignment around AI adoption across R&D, ML, and dev teams</span>
           </div>
-          <span class="slider-pct" id="microtoxVal">30%</span>
+          <span class="slider-pct" id="microtoxVal">35%</span>
         </div>
-        <input type="range" id="microtoxPct" min="0" max="70" value="30" oninput="updateSlider('microtoxPct','microtoxVal')">
-        <div class="slider-hint">% of team experiencing recurring microtoxic behavior — Industry avg: 30%</div>
+        <input type="range" id="microtoxPct" min="0" max="70" value="35" oninput="updateSlider('microtoxPct','microtoxVal')">
+        <div class="slider-hint">% of technical staff experiencing AI-related cultural friction — 2026 avg: 35%</div>
       </div>
 
       <!-- Slider 3 -->
       <div class="slider-block">
         <div class="slider-top">
           <div class="slider-name-wrap">
-            <span class="slider-name">Challenger Safety Deficit</span>
-            <span class="slider-sublabel">Developers too intimidated to share ideas or push back with senior staff</span>
+            <span class="slider-name">Voice Suppression</span>
+            <span class="slider-sublabel">Engineers and developers unable to surface concerns, ideas, or blockers safely</span>
           </div>
-          <span class="slider-pct" id="challengerVal">40%</span>
+          <span class="slider-pct" id="challengerVal">42%</span>
         </div>
-        <input type="range" id="challengerPct" min="0" max="80" value="40" oninput="updateSlider('challengerPct','challengerVal')">
-        <div class="slider-hint">% of developers who self-censor due to fear of response — Engineering avg: 40%</div>
+        <input type="range" id="challengerPct" min="0" max="80" value="42" oninput="updateSlider('challengerPct','challengerVal')">
+        <div class="slider-hint">% of technical staff who self-censor critical information — Engineering avg: 42%</div>
       </div>
 
       <!-- Slider 4 -->
       <div class="slider-block">
         <div class="slider-top">
           <div class="slider-name-wrap">
-            <span class="slider-name">Feedback Vagueness Rate</span>
-            <span class="slider-sublabel">Performance conversations that are unclear, avoidant, or conflict-averse</span>
+            <span class="slider-name">Failure Punishment Reflex</span>
+            <span class="slider-sublabel">Teams penalized for failure rather than supported through learning and iteration</span>
           </div>
-          <span class="slider-pct" id="vagueFeedbackVal">45%</span>
+          <span class="slider-pct" id="vagueFeedbackVal">38%</span>
         </div>
-        <input type="range" id="vagueFeedbackPct" min="0" max="80" value="45" oninput="updateSlider('vagueFeedbackPct','vagueFeedbackVal')">
-        <div class="slider-hint">% of feedback conversations lacking clarity or follow-through — Avg: 45%</div>
+        <input type="range" id="vagueFeedbackPct" min="0" max="80" value="38" oninput="updateSlider('vagueFeedbackPct','vagueFeedbackVal')">
+        <div class="slider-hint">% of teams operating under a punitive failure culture — Industry avg: 38%</div>
       </div>
 
       <!-- Slider 5 -->
       <div class="slider-block">
         <div class="slider-top">
           <div class="slider-name-wrap">
-            <span class="slider-name">Feedback Timeliness Gap</span>
-            <span class="slider-sublabel">Critical feedback delivered too late to course correct performance</span>
+            <span class="slider-name">Communication & Feedback Debt</span>
+            <span class="slider-sublabel">Chronic gaps in clarity, timeliness, and quality of feedback across all levels</span>
           </div>
-          <span class="slider-pct" id="lateFeeedbackVal">38%</span>
+          <span class="slider-pct" id="lateFeeedbackVal">45%</span>
         </div>
-        <input type="range" id="lateFeedbackPct" min="0" max="80" value="38" oninput="updateSlider('lateFeedbackPct','lateFeeedbackVal')">
-        <div class="slider-hint">% of performance issues where feedback arrived too late — Avg: 38%</div>
+        <input type="range" id="lateFeedbackPct" min="0" max="80" value="45" oninput="updateSlider('lateFeedbackPct','lateFeeedbackVal')">
+        <div class="slider-hint">% of feedback interactions failing in clarity or timing — Avg: 45%</div>
       </div>
 
       <div class="nav">
@@ -863,9 +862,9 @@
 
       <div class="result-hero">
         <div class="debt-badge">Cultural Debt™</div>
-        <div class="result-eyebrow">Estimated Annual Cost of Incivility</div>
+        <div class="result-eyebrow">Estimated Annual Cultural Debt Cost</div>
         <div class="result-amount" id="totalCost">$0</div>
-        <div class="result-note">This is what workplace incivility is costing your engineering organization every year — across productivity loss, innovation suppression, attrition, and broken feedback loops.</div>
+        <div class="result-note">This is what accumulated cultural debt is costing your engineering organization every year — across management gaps, AI friction, voice suppression, punitive culture, and broken feedback loops.</div>
       </div>
 
       <!-- Severity bar -->
@@ -886,28 +885,28 @@
       <div class="card-title" style="margin-bottom:14px;">Cost Breakdown by Debt Driver</div>
       <div class="breakdown-grid">
         <div class="bc">
-          <div class="bc-label">Incivility & Microtoxicity</div>
-          <div class="bc-sublabel">Productivity drain across all teams</div>
+          <div class="bc-label">Manager Capability Gap</div>
+          <div class="bc-sublabel">Leadership & retention cost</div>
           <div class="bc-amount" id="incivilCost">—</div>
-          <div class="bc-desc">Cost of time lost recovering from uncivil and microtoxic incidents</div>
+          <div class="bc-desc">Cost of underperforming managers across productivity, attrition, and team output</div>
         </div>
         <div class="bc">
-          <div class="bc-label">Challenger Safety Deficit</div>
-          <div class="bc-sublabel">Innovation & velocity suppression</div>
+          <div class="bc-label">AI Cultural Debt</div>
+          <div class="bc-sublabel">Innovation & adoption friction</div>
           <div class="bc-amount" id="challengerCost">—</div>
-          <div class="bc-desc">Ideas withheld, bugs unreported, solutions delayed by fear-based silence</div>
+          <div class="bc-desc">Velocity and competitive cost of AI resistance or misalignment in technical teams</div>
         </div>
         <div class="bc">
-          <div class="bc-label">Vague Feedback Cost</div>
-          <div class="bc-sublabel">Misdirected effort & rework</div>
+          <div class="bc-label">Voice Suppression</div>
+          <div class="bc-sublabel">Innovation & safety cost</div>
           <div class="bc-amount" id="vagueCost">—</div>
-          <div class="bc-desc">Cost of work done incorrectly due to unclear performance direction</div>
+          <div class="bc-desc">Cost of unreported bugs, withheld ideas, and unaddressed blockers</div>
         </div>
         <div class="bc">
-          <div class="bc-label">Late Feedback & Attrition</div>
-          <div class="bc-sublabel">Turnover & replacement cost</div>
+          <div class="bc-label">Failure Punishment & Feedback Debt</div>
+          <div class="bc-sublabel">Velocity & attrition cost</div>
           <div class="bc-amount" id="attritionCost">—</div>
-          <div class="bc-desc">Senior talent lost when performance issues go unaddressed until exit</div>
+          <div class="bc-desc">Innovation suppression and talent loss driven by punitive culture and poor feedback</div>
         </div>
       </div>
 
