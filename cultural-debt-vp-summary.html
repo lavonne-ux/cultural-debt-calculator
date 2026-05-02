@@ -338,7 +338,7 @@
 
   <div class="total-card">
     <div>
-      <div class="total-eyebrow">Annual Cost of Incivility</div>
+      <div class="total-eyebrow">Annual Cultural Debt Cost</div>
       <div class="total-amount" id="vpTotal">—</div>
       <div class="total-label">estimated annual operational loss</div>
     </div>
@@ -374,8 +374,8 @@
     </div>
     <div class="cost-row">
       <div>
-        <div class="cost-driver">AI Cultural Debt</div>
-        <div class="cost-driver-sub">Innovation & adoption friction in R&D, ML, and dev teams</div>
+        <div class="cost-driver">Brilliant Jerk Immunity</div>
+        <div class="cost-driver-sub">Tolerated toxicity suppressing team output and driving attrition</div>
       </div>
       <div class="cost-pct" id="vpChallengerPct">—</div>
       <div class="cost-amount" id="vpChallengerCost">—</div>
@@ -390,11 +390,19 @@
     </div>
     <div class="cost-row">
       <div>
-        <div class="cost-driver">Failure Punishment & Feedback Debt</div>
-        <div class="cost-driver-sub">Innovation loss and attrition from punitive culture</div>
+        <div class="cost-driver">Failure Punishment Reflex</div>
+        <div class="cost-driver-sub">Innovation velocity killed by punitive response to failure</div>
       </div>
       <div class="cost-pct" id="vpLatePct">—</div>
       <div class="cost-amount" id="vpAttritionCost">—</div>
+    </div>
+    <div class="cost-row">
+      <div>
+        <div class="cost-driver">Communication & Feedback Debt</div>
+        <div class="cost-driver-sub">Chronic gaps in clarity, timeliness, and quality of feedback</div>
+      </div>
+      <div class="cost-pct" id="vpFeedbackPct">—</div>
+      <div class="cost-amount" id="vpFeedbackCost">—</div>
     </div>
   </div>
 
@@ -450,10 +458,12 @@
     document.getElementById('vpChallengerCost').textContent = fmt(get('cc'));
     document.getElementById('vpVagueCost').textContent      = fmt(get('vc'));
     document.getElementById('vpAttritionCost').textContent  = fmt(get('ac'));
+    document.getElementById('vpFeedbackCost').textContent   = fmt(get('fc'));
     document.getElementById('vpIncivilPct').textContent     = (p.get('ip') || '—') + '%';
     document.getElementById('vpChallengerPct').textContent  = (p.get('cp') || '—') + '%';
     document.getElementById('vpVaguePct').textContent       = (p.get('vp') || '—') + '%';
     document.getElementById('vpLatePct').textContent        = (p.get('lp') || '—') + '%';
+    document.getElementById('vpFeedbackPct').textContent    = (p.get('fp') || '—') + '%';
 
     const avg    = parseFloat(p.get('avg')) || 0;
     const sevPct = Math.min(avg * 200, 100);

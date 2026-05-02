@@ -802,13 +802,13 @@
       <div class="slider-block">
         <div class="slider-top">
           <div class="slider-name-wrap">
-            <span class="slider-name">AI Cultural Debt</span>
-            <span class="slider-sublabel">Resistance, fear, or misalignment around AI adoption across R&D, ML, and dev teams</span>
+            <span class="slider-name">Brilliant Jerk Immunity</span>
+            <span class="slider-sublabel">High performers tolerated despite toxic behavior that damages team culture and output</span>
           </div>
-          <span class="slider-pct" id="microtoxVal">35%</span>
+          <span class="slider-pct" id="microtoxVal">54%</span>
         </div>
-        <input type="range" id="microtoxPct" min="0" max="70" value="35" oninput="updateSlider('microtoxPct','microtoxVal')">
-        <div class="slider-hint">% of technical staff experiencing AI-related cultural friction — 2026 avg: 35%</div>
+        <input type="range" id="microtoxPct" min="0" max="80" value="54" oninput="updateSlider('microtoxPct','microtoxVal')">
+        <div class="slider-hint">% of organizations that tolerate brilliant jerks despite documented cultural damage — HBS/Netflix research avg: 54%</div>
       </div>
 
       <!-- Slider 3 -->
@@ -891,10 +891,10 @@
           <div class="bc-desc">Cost of underperforming managers across productivity, attrition, and team output</div>
         </div>
         <div class="bc">
-          <div class="bc-label">AI Cultural Debt</div>
-          <div class="bc-sublabel">Innovation & adoption friction</div>
+          <div class="bc-label">Brilliant Jerk Immunity</div>
+          <div class="bc-sublabel">Tolerated toxicity & team damage cost</div>
           <div class="bc-amount" id="challengerCost">—</div>
-          <div class="bc-desc">Velocity and competitive cost of AI resistance or misalignment in technical teams</div>
+          <div class="bc-desc">Cost of retaining high performers whose toxic behavior suppresses team output and drives attrition</div>
         </div>
         <div class="bc">
           <div class="bc-label">Voice Suppression</div>
@@ -907,6 +907,12 @@
           <div class="bc-sublabel">Velocity & attrition cost</div>
           <div class="bc-amount" id="attritionCost">—</div>
           <div class="bc-desc">Innovation suppression and talent loss driven by punitive culture and poor feedback</div>
+        </div>
+        <div class="bc">
+          <div class="bc-label">Communication & Feedback Debt</div>
+          <div class="bc-sublabel">Rework, attrition & missed delivery</div>
+          <div class="bc-amount" id="feedbackCostDisplay">—</div>
+          <div class="bc-desc">Cost of chronic gaps in clarity, timeliness, and quality of feedback across all levels</div>
         </div>
       </div>
 
@@ -977,28 +983,31 @@
 
     const totalPayroll = employees * salary;
 
-    // Incivility + microtoxicity: Porath research — 80% lose work time, avg 7 min/day lost per affected employee
-    const affectedByIncivility = employees * Math.max(incivilityPct, microtoxPct);
-    const incivilCost = affectedByIncivility * salary * 0.048; // ~5% productivity drain
+    // 1. Manager Capability Gap
+    const incivilCost = employees * incivilityPct * salary * 0.048;
 
-    // Challenger safety: suppressed ideas, unreported bugs, delayed solutions
-    // Engineers earning $145K suppressing ideas = conservatively 15% of value output lost
-    const challengerCost = employees * challengerPct * salary * 0.15;
+    // 2. Brilliant Jerk Immunity — HBS: toxic employee costs 2x a superstar hire
+    const challengerCost = employees * microtoxPct * salary * 0.12;
 
-    // Vague feedback: rework cost — avg 20% of effort misdirected
-    const vagueCost = totalPayroll * vaguePct * 0.20;
+    // 3. Voice Suppression — unreported bugs, withheld ideas, blocked velocity
+    const vagueCost = employees * challengerPct * salary * 0.15;
 
-    // Late feedback → attrition: % of staff affected who eventually leave
-    const atRiskStaff = employees * latePct * 0.18; // 18% of those with late feedback eventually exit
-    const attritionCost = atRiskStaff * salary * (replacePct / 100);
+    // 4. Failure Punishment Reflex — innovation velocity loss
+    const attritionCost = totalPayroll * vaguePct * 0.18;
 
-    const total = incivilCost + challengerCost + vagueCost + attritionCost;
+    // 5. Communication & Feedback Debt — rework, misdirected effort, attrition
+    const atRiskStaff = employees * latePct * 0.18;
+    const feedbackCost = atRiskStaff * salary * (replacePct / 100);
 
-    document.getElementById('totalCost').textContent   = fmt(total);
-    document.getElementById('incivilCost').textContent  = fmt(incivilCost);
-    document.getElementById('challengerCost').textContent = fmt(challengerCost);
-    document.getElementById('vagueCost').textContent   = fmt(vagueCost);
-    document.getElementById('attritionCost').textContent = fmt(attritionCost);
+    const total = incivilCost + challengerCost + vagueCost + attritionCost + feedbackCost;
+
+    document.getElementById('totalCost').textContent        = fmt(total);
+    document.getElementById('incivilCost').textContent      = fmt(incivilCost);
+    document.getElementById('challengerCost').textContent   = fmt(challengerCost);
+    document.getElementById('vagueCost').textContent        = fmt(vagueCost);
+    document.getElementById('attritionCost').textContent    = fmt(attritionCost);
+    document.getElementById('feedbackCostDisplay').textContent = fmt(feedbackCost);
+    window._feedbackCost = feedbackCost;
 
     // Severity scoring
     const avgPct = (incivilityPct + microtoxPct + challengerPct + vaguePct + latePct) / 5;
@@ -1036,7 +1045,10 @@
     const microtoxPct    = document.getElementById('microtoxPct').value;
     const avgPct         = (parseFloat(incivilityPct)+parseFloat(microtoxPct)+parseFloat(challengerPct)+parseFloat(vaguePct)+parseFloat(latePct))/500;
 
-    const params = `?total=${total}&ic=${incivilCost}&cc=${challengerCost}&vc=${vagueCost}&ac=${attritionCost}&ip=${incivilityPct}&cp=${challengerPct}&vp=${vaguePct}&lp=${latePct}&avg=${avgPct.toFixed(3)}`;
+    const feedbackCost  = Math.round(window._feedbackCost || 0);
+    const feedbackPct   = document.getElementById('lateFeedbackPct').value;
+
+    const params = `?total=${total}&ic=${incivilCost}&cc=${challengerCost}&vc=${vagueCost}&ac=${attritionCost}&fc=${feedbackCost}&ip=${incivilityPct}&cp=${challengerPct}&vp=${vaguePct}&lp=${latePct}&fp=${feedbackPct}&avg=${avgPct.toFixed(3)}`;
 
     // Full report URL with numbers
     const fullReportLink = 'https://lavonne-ux.github.io/cultural-debt-calculator/cultural-debt-vp-summary.html' + params;
@@ -1091,17 +1103,17 @@
 
   function resetCalc() {
     ['employees','salary','tenure','replacePct'].forEach(id => document.getElementById(id).value = '');
-    document.getElementById('incivilityPct').value  = 35;
-    document.getElementById('microtoxPct').value    = 30;
-    document.getElementById('challengerPct').value  = 40;
-    document.getElementById('vagueFeedbackPct').value = 45;
-    document.getElementById('lateFeedbackPct').value  = 38;
+    document.getElementById('incivilityPct').value    = 40;
+    document.getElementById('microtoxPct').value      = 54;
+    document.getElementById('challengerPct').value    = 42;
+    document.getElementById('vagueFeedbackPct').value = 38;
+    document.getElementById('lateFeedbackPct').value  = 45;
     [
-      ['incivilityVal','35%'],
-      ['microtoxVal','30%'],
-      ['challengerVal','40%'],
-      ['vagueFeedbackVal','45%'],
-      ['lateFeeedbackVal','38%']
+      ['incivilityVal','40%'],
+      ['microtoxVal','54%'],
+      ['challengerVal','42%'],
+      ['vagueFeedbackVal','38%'],
+      ['lateFeeedbackVal','45%']
     ].forEach(([id,v]) => document.getElementById(id).textContent = v);
     document.querySelectorAll('.team-btn').forEach(b => b.classList.remove('selected'));
     goTo(1);
