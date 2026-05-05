@@ -9,7 +9,7 @@
   :root {
     --teal:      #2ec4b6;
     --teal-dark: #1a9e93;
-    --aqua-grad: linear-gradient(135deg, #5de0d8 0%, #2db8c5 40%, #1a7fa8 100%);
+    --aqua-grad: linear-gradient(135deg, #091E42 0%, #0D2B6E 25%, #1A5CB8 55%, #00B4A6 80%, #5BC8C0 100%);
     --white:     #ffffff;
     --off-white: #f4fafa;
     --navy:      #0f1f3d;
@@ -183,7 +183,7 @@
     display: grid;
     grid-template-columns: 1fr 80px 140px;
     padding: 10px 20px;
-    background: linear-gradient(135deg, #5de0d8 0%, #2db8c5 40%, #1a7fa8 100%);
+    background: linear-gradient(135deg, #091E42 0%, #0D2B6E 25%, #1A5CB8 55%, #00B4A6 80%, #5BC8C0 100%);
     font-size: 10px;
     font-weight: 600;
     letter-spacing: 0.12em;
@@ -320,18 +320,11 @@
 
 <div class="header">
   <div class="logo-row">
-    <div class="logo-left">
-      <svg width="30" height="30" viewBox="0 0 38 38" fill="none">
-        <polygon points="19,4 30,26 8,26" fill="#3ecf7a" opacity="0.9"/>
-        <polygon points="19,4 30,26 19,26" fill="#2451b7" opacity="0.8"/>
-        <polygon points="19,4 19,26 8,26" fill="#2ec4b6" opacity="0.95"/>
-      </svg>
-      <div class="logo-text">culture shift<span>consulting group</span></div>
-    </div>
+    <img src="https://lavonne-ux.github.io/cultural-debt-calculator/L3A-i.png" alt="Culture Shift Consulting Group" style="height:44px; width:auto;" onerror="this.style.display='none'">
     <div class="report-date" id="reportDate"></div>
   </div>
   <div class="header-title">Cultural Debt™ Summary</div>
-  <div class="header-sub">Engineering Organization · Confidential</div>
+  <div class="header-sub">Engineering &amp; R&D Organization · Confidential</div>
 </div>
 
 <div class="body">
@@ -367,69 +360,77 @@
     <div class="cost-row">
       <div>
         <div class="cost-driver">Manager Capability Gap</div>
-        <div class="cost-driver-sub">Leadership & retention cost across engineering teams</div>
+        <div class="cost-driver-sub">Leadership & Retention Cost across engineering teams</div>
       </div>
       <div class="cost-pct" id="vpIncivilPct">—</div>
       <div class="cost-amount" id="vpIncivilCost">—</div>
     </div>
     <div class="cost-row">
       <div>
-        <div class="cost-driver">Brilliant Jerk Immunity</div>
-        <div class="cost-driver-sub">Tolerated toxicity suppressing team output and driving attrition</div>
+        <div class="cost-driver">Voice Suppression</div>
+        <div class="cost-driver-sub">Innovation & Safety Cost — unreported bugs, withheld ideas</div>
       </div>
       <div class="cost-pct" id="vpChallengerPct">—</div>
       <div class="cost-amount" id="vpChallengerCost">—</div>
     </div>
     <div class="cost-row">
       <div>
-        <div class="cost-driver">Voice Suppression</div>
-        <div class="cost-driver-sub">Unreported bugs, withheld ideas, unaddressed blockers</div>
+        <div class="cost-driver">Failure Punishment Reflex</div>
+        <div class="cost-driver-sub">Velocity & Innovation Cost — punitive failure culture</div>
       </div>
       <div class="cost-pct" id="vpVaguePct">—</div>
       <div class="cost-amount" id="vpVagueCost">—</div>
     </div>
     <div class="cost-row">
       <div>
-        <div class="cost-driver">Failure Punishment Reflex</div>
-        <div class="cost-driver-sub">Innovation velocity killed by punitive response to failure</div>
+        <div class="cost-driver">Communication & Feedback Debt</div>
+        <div class="cost-driver-sub">Rework & Attrition Cost — chronic feedback gaps</div>
       </div>
       <div class="cost-pct" id="vpLatePct">—</div>
       <div class="cost-amount" id="vpAttritionCost">—</div>
     </div>
     <div class="cost-row">
       <div>
-        <div class="cost-driver">Communication & Feedback Debt</div>
-        <div class="cost-driver-sub">Chronic gaps in clarity, timeliness, and quality of feedback</div>
+        <div class="cost-driver">Brilliant Jerk Immunity</div>
+        <div class="cost-driver-sub">Tolerated Toxicity Cost — high performer cultural damage</div>
       </div>
       <div class="cost-pct" id="vpFeedbackPct">—</div>
       <div class="cost-amount" id="vpFeedbackCost">—</div>
+    </div>
+    <div class="cost-row">
+      <div>
+        <div class="cost-driver">Shadow Management</div>
+        <div class="cost-driver-sub">Leadership Time & Strategy Cost — $90K–$144K direct VP salary waste + org productivity erosion</div>
+      </div>
+      <div class="cost-pct" id="vpShadowPct">—</div>
+      <div class="cost-amount" id="vpShadowCost">—</div>
     </div>
   </div>
 
   <div class="impact-row">
     <div class="impact-card">
-      <div class="impact-num">80%</div>
-      <div class="impact-label">of staff lose work time after a single incivility incident</div>
+      <div class="impact-num">8.7×</div>
+      <div class="impact-label">total cost of a difficult leader relative to their annual compensation</div>
     </div>
     <div class="impact-card">
-      <div class="impact-num">19%</div>
-      <div class="impact-label">productivity gain when psychological safety is high</div>
+      <div class="impact-num">7–9%</div>
+      <div class="impact-label">productivity decrease across entire org from ineffective leadership</div>
     </div>
     <div class="impact-card">
-      <div class="impact-num">4–7×</div>
-      <div class="impact-label">stronger negative impact from draining vs. energizing relationships</div>
+      <div class="impact-num">$359B</div>
+      <div class="impact-label">lost annually to unresolved workplace conflict in U.S. organizations</div>
     </div>
   </div>
 
   <div class="next-step">
-    <div class="next-label">Recommended Next Step</div>
-    <div class="next-text">A Cultural Debt consultation identifies your highest-cost drivers, team-specific patterns, and a prioritized 90-day intervention plan. Most organizations recover 30–40% of their cultural debt cost within two quarters of implementation.</div>
+    <div class="next-label">Recommended Next Best Step</div>
+    <div class="next-text">Schedule a Cultural Debt Consultation where we will help you identify your highest-cost drivers, some of the team-specific blocks, and explore the best next step to address this leakage. We can help organizations recover 30–40% of their cultural debt cost within two quarters of implementation.</div>
   </div>
 
   <div class="cta">
-    <div class="cta-text">
+    <div class="cta-text" style="font-size:18px; font-weight:700;">
       Ready to recover this cost?
-      <span>Culture Shift Consulting Group · cultureshiftconsultinggroup.com</span>
+      <span style="font-size:14px; font-weight:600; margin-top:6px; display:block;">www.cultureshiftconsultinggroup.com</span>
     </div>
     <a href="https://cultureshiftconsultinggroup.com" class="cta-btn">Schedule Consultation</a>
   </div>
@@ -437,7 +438,7 @@
 </div>
 
 <div class="footer">
-  Estimates based on Porath (Georgetown), Google Project Aristotle, McKinsey, and Gallup research.<br>
+  Estimates based on Porath (Georgetown), Google Project Aristotle, McKinsey, Gallup, and Myers-Briggs research.<br>
   Culture Shift Consulting Group · cultureshiftconsultinggroup.com
 </div>
 
@@ -459,11 +460,13 @@
     document.getElementById('vpVagueCost').textContent      = fmt(get('vc'));
     document.getElementById('vpAttritionCost').textContent  = fmt(get('ac'));
     document.getElementById('vpFeedbackCost').textContent   = fmt(get('fc'));
+    document.getElementById('vpShadowCost').textContent     = fmt(get('sc'));
     document.getElementById('vpIncivilPct').textContent     = (p.get('ip') || '—') + '%';
     document.getElementById('vpChallengerPct').textContent  = (p.get('cp') || '—') + '%';
     document.getElementById('vpVaguePct').textContent       = (p.get('vp') || '—') + '%';
     document.getElementById('vpLatePct').textContent        = (p.get('lp') || '—') + '%';
     document.getElementById('vpFeedbackPct').textContent    = (p.get('fp') || '—') + '%';
+    document.getElementById('vpShadowPct').textContent      = (p.get('sp') || '—') + '%';
 
     const avg    = parseFloat(p.get('avg')) || 0;
     const sevPct = Math.min(avg * 200, 100);

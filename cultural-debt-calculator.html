@@ -12,7 +12,7 @@
     --teal:        #2ec4b6;
     --teal-dark:   #1a9e93;
     --teal-light:  #7ee8e1;
-    --aqua-grad:   linear-gradient(135deg, #5de0d8 0%, #2db8c5 40%, #1a7fa8 100%);
+    --aqua-grad:   linear-gradient(135deg, #091E42 0%, #0D2B6E 25%, #1A5CB8 55%, #00B4A6 80%, #5BC8C0 100%);
     --navy:        #0f1f3d;
     --navy-mid:    #1b3358;
     --white:       #ffffff;
@@ -90,14 +90,24 @@
 
   .hero-title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(30px, 6vw, 52px);
+    font-size: clamp(28px, 5vw, 48px);
     font-weight: 700;
     color: var(--white);
-    line-height: 1.15;
+    line-height: 1.1;
+    margin-bottom: 10px;
+    letter-spacing: 0.04em;
+  }
+
+  .hero-title-sub {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 4vw, 36px);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.2;
     margin-bottom: 14px;
   }
 
-  .hero-title em {
+  .hero-title-sub em {
     font-style: italic;
     font-weight: 400;
   }
@@ -695,23 +705,12 @@
 <!-- Hero -->
 <div class="hero-bar">
   <div class="logo-row">
-    <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="19,4 30,26 8,26" fill="#3ecf7a" opacity="0.85"/>
-      <polygon points="19,4 30,26 19,26" fill="#2451b7" opacity="0.75"/>
-      <polygon points="19,4 19,26 8,26" fill="#2ec4b6" opacity="0.9"/>
-    </svg>
-    <div class="logo-text">culture shift<span>consulting group</span></div>
+    <img src="https://lavonne-ux.github.io/cultural-debt-calculator/L3A-i.png" alt="Culture Shift Consulting Group" style="height:52px; width:auto;" onerror="this.style.display='none'">
   </div>
-  <div class="hero-eyebrow">Cultural Debt Calculator</div>
-  <div class="hero-title">What Is Incivility<br><em>Costing Your Team?</em></div>
-  <p class="hero-sub">Built for VPs of Engineering. Quantify the real operational cost of workplace incivility across your engineering organization — in under 3 minutes.</p>
-  <div class="role-tags">
-    <span class="role-tag">Engineers</span>
-    <span class="role-tag">Software Developers</span>
-    <span class="role-tag">Machine Learning</span>
-    <span class="role-tag">R&amp;D</span>
-    <span class="role-tag">Product &amp; ML Teams</span>
-  </div>
+  <div class="hero-eyebrow">Business Intelligence Tool</div>
+  <div class="hero-title">CULTURAL DEBT CALCULATOR</div>
+  <div class="hero-title-sub">What Is Organizational Friction<br><em>Costing Your Team?</em></div>
+  <p class="hero-sub">Built for VPs of R&amp;D and Engineering. Quantify the real Hidden Overhead across your engineering organization — in under 3 minutes.</p>
 </div>
 
 <!-- Main -->
@@ -732,7 +731,7 @@
 
       <div class="grid-2">
         <div class="input-group">
-          <label>Total Technical Staff <sub>engineers, devs, ML, R&D</sub></label>
+          <label>Total Technical Staff <sub>Engineers, Devs, ML, R&D</sub></label>
           <div class="input-wrap">
             <input type="number" id="employees" placeholder="e.g. 120" min="1"/>
           </div>
@@ -764,7 +763,7 @@
       </div>
 
       <div class="team-selector">
-        <label>Primary Team Type <sub>select all that apply</sub></label>
+        <label style="font-size:13px; font-weight:600; letter-spacing:0.05em; text-transform:none; color:var(--navy); margin-bottom:12px; display:block;">Select All That Apply</label>
         <div class="team-options">
           <button class="team-btn" onclick="toggleTeam(this)">Engineers</button>
           <button class="team-btn" onclick="toggleTeam(this)">Software Developers</button>
@@ -775,7 +774,7 @@
       </div>
 
       <div class="nav">
-        <button class="btn btn-primary" onclick="goTo(2)">Next: Incivility Factors →</button>
+        <button class="btn btn-primary" onclick="goTo(2)">Next: Cultural Debt Factors →</button>
       </div>
     </div>
 
@@ -802,52 +801,65 @@
       <div class="slider-block">
         <div class="slider-top">
           <div class="slider-name-wrap">
-            <span class="slider-name">Brilliant Jerk Immunity</span>
-            <span class="slider-sublabel">High performers tolerated despite toxic behavior that damages team culture and output</span>
+            <span class="slider-name">Voice Suppression</span>
+            <span class="slider-sublabel">Engineers and Developers unable to surface concerns, ideas, or blockers safely</span>
           </div>
-          <span class="slider-pct" id="microtoxVal">54%</span>
+          <span class="slider-pct" id="microtoxVal">42%</span>
         </div>
-        <input type="range" id="microtoxPct" min="0" max="80" value="54" oninput="updateSlider('microtoxPct','microtoxVal')">
-        <div class="slider-hint">% of organizations that tolerate brilliant jerks despite documented cultural damage — HBS/Netflix research avg: 54%</div>
+        <input type="range" id="microtoxPct" min="0" max="80" value="42" oninput="updateSlider('microtoxPct','microtoxVal')">
+        <div class="slider-hint">% of technical staff who self-censor critical information — Engineering avg: 42%</div>
       </div>
 
       <!-- Slider 3 -->
       <div class="slider-block">
         <div class="slider-top">
           <div class="slider-name-wrap">
-            <span class="slider-name">Voice Suppression</span>
-            <span class="slider-sublabel">Engineers and developers unable to surface concerns, ideas, or blockers safely</span>
+            <span class="slider-name">Failure Punishment Reflex</span>
+            <span class="slider-sublabel">Teams penalized for failure rather than supported through learning and iteration</span>
           </div>
-          <span class="slider-pct" id="challengerVal">42%</span>
+          <span class="slider-pct" id="challengerVal">38%</span>
         </div>
-        <input type="range" id="challengerPct" min="0" max="80" value="42" oninput="updateSlider('challengerPct','challengerVal')">
-        <div class="slider-hint">% of technical staff who self-censor critical information — Engineering avg: 42%</div>
+        <input type="range" id="challengerPct" min="0" max="80" value="38" oninput="updateSlider('challengerPct','challengerVal')">
+        <div class="slider-hint">% of teams operating under a punitive failure culture — Industry avg: 38%</div>
       </div>
 
       <!-- Slider 4 -->
       <div class="slider-block">
         <div class="slider-top">
           <div class="slider-name-wrap">
-            <span class="slider-name">Failure Punishment Reflex</span>
-            <span class="slider-sublabel">Teams penalized for failure rather than supported through learning and iteration</span>
+            <span class="slider-name">Communication & Feedback Debt</span>
+            <span class="slider-sublabel">Chronic gaps in clarity, timeliness, and quality of feedback across all levels</span>
           </div>
-          <span class="slider-pct" id="vagueFeedbackVal">38%</span>
+          <span class="slider-pct" id="vagueFeedbackVal">45%</span>
         </div>
-        <input type="range" id="vagueFeedbackPct" min="0" max="80" value="38" oninput="updateSlider('vagueFeedbackPct','vagueFeedbackVal')">
-        <div class="slider-hint">% of teams operating under a punitive failure culture — Industry avg: 38%</div>
+        <input type="range" id="vagueFeedbackPct" min="0" max="80" value="45" oninput="updateSlider('vagueFeedbackPct','vagueFeedbackVal')">
+        <div class="slider-hint">% of feedback interactions failing in clarity or timing — Avg: 45%</div>
       </div>
 
       <!-- Slider 5 -->
       <div class="slider-block">
         <div class="slider-top">
           <div class="slider-name-wrap">
-            <span class="slider-name">Communication & Feedback Debt</span>
-            <span class="slider-sublabel">Chronic gaps in clarity, timeliness, and quality of feedback across all levels</span>
+            <span class="slider-name">Brilliant Jerk Immunity</span>
+            <span class="slider-sublabel">High performers tolerated despite toxic behavior — tolerated toxicity damaging team culture and output</span>
           </div>
-          <span class="slider-pct" id="lateFeeedbackVal">45%</span>
+          <span class="slider-pct" id="lateFeeedbackVal">54%</span>
         </div>
-        <input type="range" id="lateFeedbackPct" min="0" max="80" value="45" oninput="updateSlider('lateFeedbackPct','lateFeeedbackVal')">
-        <div class="slider-hint">% of feedback interactions failing in clarity or timing — Avg: 45%</div>
+        <input type="range" id="lateFeedbackPct" min="0" max="80" value="54" oninput="updateSlider('lateFeedbackPct','lateFeeedbackVal')">
+        <div class="slider-hint">% of organizations tolerating brilliant jerks despite documented cultural damage — HBS/Netflix research avg: 54%</div>
+      </div>
+
+      <!-- Slider 6 -->
+      <div class="slider-block">
+        <div class="slider-top">
+          <div class="slider-name-wrap">
+            <span class="slider-name">Shadow Management</span>
+            <span class="slider-sublabel">VP/manager time consumed managing cultural friction instead of driving innovation and strategy</span>
+          </div>
+          <span class="slider-pct" id="shadowVal">35%</span>
+        </div>
+        <input type="range" id="shadowPct" min="0" max="80" value="35" oninput="updateSlider('shadowPct','shadowVal')">
+        <div class="slider-hint">% of VP/leadership time consumed by cultural debt maintenance — Harvard CEO study: 36–42% reactive mode; direct salary waste = $90K–$144K/yr per VP</div>
       </div>
 
       <div class="nav">
@@ -864,7 +876,7 @@
         <div class="debt-badge">Cultural Debt™</div>
         <div class="result-eyebrow">Estimated Annual Cultural Debt Cost</div>
         <div class="result-amount" id="totalCost">$0</div>
-        <div class="result-note">This is what accumulated cultural debt is costing your engineering organization every year — across management gaps, AI friction, voice suppression, punitive culture, and broken feedback loops.</div>
+        <div class="result-note">This is what accumulated cultural debt is costing your engineering organization every year — across management gaps, tolerated toxicity, voice suppression, punitive culture, broken feedback loops, and shadow management.</div>
       </div>
 
       <!-- Severity bar -->
@@ -886,46 +898,52 @@
       <div class="breakdown-grid">
         <div class="bc">
           <div class="bc-label">Manager Capability Gap</div>
-          <div class="bc-sublabel">Leadership & retention cost</div>
+          <div class="bc-sublabel">Leadership & Retention Cost</div>
           <div class="bc-amount" id="incivilCost">—</div>
           <div class="bc-desc">Cost of underperforming managers across productivity, attrition, and team output</div>
         </div>
         <div class="bc">
-          <div class="bc-label">Brilliant Jerk Immunity</div>
-          <div class="bc-sublabel">Tolerated toxicity & team damage cost</div>
-          <div class="bc-amount" id="challengerCost">—</div>
-          <div class="bc-desc">Cost of retaining high performers whose toxic behavior suppresses team output and drives attrition</div>
-        </div>
-        <div class="bc">
           <div class="bc-label">Voice Suppression</div>
-          <div class="bc-sublabel">Innovation & safety cost</div>
-          <div class="bc-amount" id="vagueCost">—</div>
+          <div class="bc-sublabel">Innovation & Safety Cost</div>
+          <div class="bc-amount" id="challengerCost">—</div>
           <div class="bc-desc">Cost of unreported bugs, withheld ideas, and unaddressed blockers</div>
         </div>
         <div class="bc">
-          <div class="bc-label">Failure Punishment & Feedback Debt</div>
-          <div class="bc-sublabel">Velocity & attrition cost</div>
-          <div class="bc-amount" id="attritionCost">—</div>
-          <div class="bc-desc">Innovation suppression and talent loss driven by punitive culture and poor feedback</div>
+          <div class="bc-label">Failure Punishment Reflex</div>
+          <div class="bc-sublabel">Velocity & Innovation Cost</div>
+          <div class="bc-amount" id="vagueCost">—</div>
+          <div class="bc-desc">Innovation suppression and talent loss driven by punitive failure culture</div>
         </div>
         <div class="bc">
           <div class="bc-label">Communication & Feedback Debt</div>
-          <div class="bc-sublabel">Rework, attrition & missed delivery</div>
+          <div class="bc-sublabel">Rework & Attrition Cost</div>
+          <div class="bc-amount" id="attritionCost">—</div>
+          <div class="bc-desc">Cost of chronic gaps in clarity, timeliness, and quality of feedback</div>
+        </div>
+        <div class="bc">
+          <div class="bc-label">Brilliant Jerk Immunity</div>
+          <div class="bc-sublabel">Tolerated Toxicity Cost</div>
           <div class="bc-amount" id="feedbackCostDisplay">—</div>
-          <div class="bc-desc">Cost of chronic gaps in clarity, timeliness, and quality of feedback across all levels</div>
+          <div class="bc-desc">Cost of retaining high performers whose toxic behavior damages team output and drives attrition</div>
+        </div>
+        <div class="bc">
+          <div class="bc-label">Shadow Management</div>
+          <div class="bc-sublabel">Leadership Time & Strategy Cost</div>
+          <div class="bc-amount" id="shadowCostDisplay">—</div>
+          <div class="bc-desc">VP salary waste + 8% org productivity erosion + conflict cost. Research: $90K–$144K direct loss per VP annually; total leader impact = 8.7× their compensation</div>
         </div>
       </div>
 
       <div class="cta-card">
         <h3>Get the Full Cultural Debt Report</h3>
-        <p>Receive a detailed breakdown by team type, benchmark comparisons, and a recommended intervention roadmap — delivered to your inbox.</p>
+        <p>Receive a detailed breakdown by team type and the recommended next best step — delivered to your inbox.</p>
         <div class="email-row">
           <input type="text" id="emailInput" placeholder="Your work email"/>
           <button class="btn btn-primary" onclick="sendReport()">Send My Report</button>
         </div>
       </div>
 
-      <div class="disclaimer">Estimates based on industry research including Porath (Georgetown), Gallup, and McKinsey engineering benchmarks.<br>Culture Shift Consulting Group · cultureshiftconsultinggroup.com</div>
+      <div class="disclaimer">Estimates based on industry research including Porath (Georgetown), Gallup, Myers-Briggs, and McKinsey engineering benchmarks.<br>Culture Shift Consulting Group · cultureshiftconsultinggroup.com</div>
       <span class="reset-link" onclick="resetCalc()">← Start over with new numbers</span>
     </div>
 
@@ -969,11 +987,12 @@
     const employees       = parseFloat(document.getElementById('employees').value) || 0;
     const salary          = parseFloat(document.getElementById('salary').value) || 0;
     const replacePct      = parseFloat(document.getElementById('replacePct').value) || 150;
-    const incivilityPct   = parseFloat(document.getElementById('incivilityPct').value) / 100;
-    const microtoxPct     = parseFloat(document.getElementById('microtoxPct').value) / 100;
-    const challengerPct   = parseFloat(document.getElementById('challengerPct').value) / 100;
-    const vaguePct        = parseFloat(document.getElementById('vagueFeedbackPct').value) / 100;
-    const latePct         = parseFloat(document.getElementById('lateFeedbackPct').value) / 100;
+    const incivilityPct   = parseFloat(document.getElementById('incivilityPct').value) / 100;  // Manager Capability Gap
+    const microtoxPct     = parseFloat(document.getElementById('microtoxPct').value) / 100;    // Voice Suppression
+    const challengerPct   = parseFloat(document.getElementById('challengerPct').value) / 100;  // Failure Punishment Reflex
+    const vaguePct        = parseFloat(document.getElementById('vagueFeedbackPct').value) / 100; // Communication & Feedback Debt
+    const latePct         = parseFloat(document.getElementById('lateFeedbackPct').value) / 100;  // Brilliant Jerk Immunity
+    const shadowPct       = parseFloat(document.getElementById('shadowPct').value) / 100;        // Shadow Management
 
     if (!employees || !salary) {
       alert('Please complete your organization inputs first.');
@@ -986,31 +1005,48 @@
     // 1. Manager Capability Gap
     const incivilCost = employees * incivilityPct * salary * 0.048;
 
-    // 2. Brilliant Jerk Immunity — HBS: toxic employee costs 2x a superstar hire
-    const challengerCost = employees * microtoxPct * salary * 0.12;
+    // 2. Voice Suppression — unreported bugs, withheld ideas, blocked velocity
+    const challengerCost = employees * microtoxPct * salary * 0.15;
 
-    // 3. Voice Suppression — unreported bugs, withheld ideas, blocked velocity
-    const vagueCost = employees * challengerPct * salary * 0.15;
+    // 3. Failure Punishment Reflex — innovation velocity loss
+    const vagueCost = totalPayroll * challengerPct * 0.18;
 
-    // 4. Failure Punishment Reflex — innovation velocity loss
-    const attritionCost = totalPayroll * vaguePct * 0.18;
+    // 4. Communication & Feedback Debt — rework, misdirected effort, attrition
+    const atRiskStaff = employees * vaguePct * 0.18;
+    const attritionCost = atRiskStaff * salary * (replacePct / 100);
 
-    // 5. Communication & Feedback Debt — rework, misdirected effort, attrition
-    const atRiskStaff = employees * latePct * 0.18;
-    const feedbackCost = atRiskStaff * salary * (replacePct / 100);
+    // 5. Brilliant Jerk Immunity — HBS: toxic employee costs 2x a superstar hire
+    const feedbackCost = employees * latePct * salary * 0.12;
 
-    const total = incivilCost + challengerCost + vagueCost + attritionCost + feedbackCost;
+    // 6. Shadow Management — three-layer research-based calculation
+    // Layer 1: Direct VP salary sunk cost (Harvard CEO study: 36-42% time in reactive mode)
+    // Using VP compensation estimate of $280K average; shadowPct = % of time on cultural debt
+    const vpCompEstimate = 280000;
+    const shadowDirectCost = vpCompEstimate * shadowPct;
 
-    document.getElementById('totalCost').textContent        = fmt(total);
-    document.getElementById('incivilCost').textContent      = fmt(incivilCost);
-    document.getElementById('challengerCost').textContent   = fmt(challengerCost);
-    document.getElementById('vagueCost').textContent        = fmt(vagueCost);
-    document.getElementById('attritionCost').textContent    = fmt(attritionCost);
+    // Layer 2: Org-wide productivity erosion (research: 7-9% productivity decrease from ineffective leadership)
+    const shadowProductivityLoss = totalPayroll * 0.08;
+
+    // Layer 3: Conflict cost attribution (U.S. employers lose $359B annually; prorated by org size)
+    // Average U.S. workforce ~160M; org's share = employees/160M * $359B
+    const shadowConflictCost = (employees / 160000000) * 359000000000 * shadowPct;
+
+    const shadowCost = shadowDirectCost + (shadowProductivityLoss * shadowPct) + shadowConflictCost;
+
+    const total = incivilCost + challengerCost + vagueCost + attritionCost + feedbackCost + shadowCost;
+
+    document.getElementById('totalCost').textContent           = fmt(total);
+    document.getElementById('incivilCost').textContent         = fmt(incivilCost);
+    document.getElementById('challengerCost').textContent      = fmt(challengerCost);
+    document.getElementById('vagueCost').textContent           = fmt(vagueCost);
+    document.getElementById('attritionCost').textContent       = fmt(attritionCost);
     document.getElementById('feedbackCostDisplay').textContent = fmt(feedbackCost);
+    document.getElementById('shadowCostDisplay').textContent   = fmt(shadowCost);
     window._feedbackCost = feedbackCost;
+    window._shadowCost   = shadowCost;
 
     // Severity scoring
-    const avgPct = (incivilityPct + microtoxPct + challengerPct + vaguePct + latePct) / 5;
+    const avgPct = (incivilityPct + microtoxPct + challengerPct + vaguePct + latePct + shadowPct) / 6;
     const severityPct = Math.min(avgPct * 200, 100);
     document.getElementById('severityFill').style.width = severityPct + '%';
 
@@ -1047,8 +1083,10 @@
 
     const feedbackCost  = Math.round(window._feedbackCost || 0);
     const feedbackPct   = document.getElementById('lateFeedbackPct').value;
+    const shadowCostVal = Math.round(window._shadowCost || 0);
+    const shadowPctVal  = document.getElementById('shadowPct').value;
 
-    const params = `?total=${total}&ic=${incivilCost}&cc=${challengerCost}&vc=${vagueCost}&ac=${attritionCost}&fc=${feedbackCost}&ip=${incivilityPct}&cp=${challengerPct}&vp=${vaguePct}&lp=${latePct}&fp=${feedbackPct}&avg=${avgPct.toFixed(3)}`;
+    const params = `?total=${total}&ic=${incivilCost}&cc=${challengerCost}&vc=${vagueCost}&ac=${attritionCost}&fc=${feedbackCost}&sc=${shadowCostVal}&ip=${incivilityPct}&cp=${challengerPct}&vp=${vaguePct}&lp=${latePct}&fp=${feedbackPct}&sp=${shadowPctVal}&avg=${avgPct.toFixed(3)}`;
 
     // Full report URL with numbers
     const fullReportLink = 'https://lavonne-ux.github.io/cultural-debt-calculator/cultural-debt-vp-summary.html' + params;
@@ -1104,16 +1142,18 @@
   function resetCalc() {
     ['employees','salary','tenure','replacePct'].forEach(id => document.getElementById(id).value = '');
     document.getElementById('incivilityPct').value    = 40;
-    document.getElementById('microtoxPct').value      = 54;
-    document.getElementById('challengerPct').value    = 42;
-    document.getElementById('vagueFeedbackPct').value = 38;
-    document.getElementById('lateFeedbackPct').value  = 45;
+    document.getElementById('microtoxPct').value      = 42;
+    document.getElementById('challengerPct').value    = 38;
+    document.getElementById('vagueFeedbackPct').value = 45;
+    document.getElementById('lateFeedbackPct').value  = 54;
+    document.getElementById('shadowPct').value        = 35;
     [
       ['incivilityVal','40%'],
-      ['microtoxVal','54%'],
-      ['challengerVal','42%'],
-      ['vagueFeedbackVal','38%'],
-      ['lateFeeedbackVal','45%']
+      ['microtoxVal','42%'],
+      ['challengerVal','38%'],
+      ['vagueFeedbackVal','45%'],
+      ['lateFeeedbackVal','54%'],
+      ['shadowVal','35%']
     ].forEach(([id,v]) => document.getElementById(id).textContent = v);
     document.querySelectorAll('.team-btn').forEach(b => b.classList.remove('selected'));
     goTo(1);
