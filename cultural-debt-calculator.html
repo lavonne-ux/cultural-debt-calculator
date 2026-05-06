@@ -321,11 +321,11 @@
     border-radius: 10px;
     padding: 18px 20px;
     margin-bottom: 14px;
-    border: 1px solid #e2f0f2;
+    border: 1.5px solid #0D2B6E;
     transition: border-color 0.2s;
   }
 
-  .slider-block:hover { border-color: var(--teal-light); }
+  .slider-block:hover { border-color: #091E42; }
 
   .slider-top {
     display: flex;
@@ -355,7 +355,7 @@
     font-family: 'Playfair Display', serif;
     font-size: 22px;
     font-weight: 700;
-    color: var(--teal-dark);
+    color: #0D2B6E;
     white-space: nowrap;
     margin-top: 2px;
   }
@@ -376,8 +376,8 @@
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: var(--teal);
-    box-shadow: 0 2px 8px rgba(46,196,182,0.4);
+    background: #0D2B6E;
+    box-shadow: 0 2px 8px rgba(13,43,110,0.4);
     cursor: pointer;
     transition: transform 0.15s;
   }
@@ -705,7 +705,7 @@
 <!-- Hero -->
 <div class="hero-bar">
   <div class="logo-row">
-    <img src="https://lavonne-ux.github.io/cultural-debt-calculator/L3A-i.png" alt="Culture Shift Consulting Group" style="height:52px; width:auto;" onerror="this.style.display='none'">
+    <img src="https://lavonne-ux.github.io/cultural-debt-calculator/L3A-i.png" alt="Culture Shift Consulting Group" style="height:80px; width:auto;" onerror="this.style.display='none'">
   </div>
   <div class="hero-eyebrow">Business Intelligence Tool</div>
   <div class="hero-title">CULTURAL DEBT CALCULATOR</div>
@@ -794,7 +794,7 @@
           <span class="slider-pct" id="incivilityVal">40%</span>
         </div>
         <input type="range" id="incivilityPct" min="0" max="80" value="40" oninput="updateSlider('incivilityPct','incivilityVal')">
-        <div class="slider-hint">% of managers operating below capability threshold for their team's needs — Research avg: 40%</div>
+        <div class="slider-hint">% of managers below capability threshold — Gallup 2025: 70% of engagement variance from manager; disengagement costs 34% of salary; manager engagement dropped to 22% in 2025</div>
       </div>
 
       <!-- Slider 2 -->
@@ -807,7 +807,7 @@
           <span class="slider-pct" id="microtoxVal">42%</span>
         </div>
         <input type="range" id="microtoxPct" min="0" max="80" value="42" oninput="updateSlider('microtoxPct','microtoxVal')">
-        <div class="slider-hint">% of technical staff who self-censor critical information — Engineering avg: 42%</div>
+        <div class="slider-hint">% of technical staff who self-censor — Google Project Aristotle 2016: psych safety = #1 team performance driver; Amy Edmondson (HBS): teams with voice suppression lose 12–19% innovation output</div>
       </div>
 
       <!-- Slider 3 -->
@@ -820,20 +820,20 @@
           <span class="slider-pct" id="challengerVal">38%</span>
         </div>
         <input type="range" id="challengerPct" min="0" max="80" value="38" oninput="updateSlider('challengerPct','challengerVal')">
-        <div class="slider-hint">% of teams operating under a punitive failure culture — Industry avg: 38%</div>
+        <div class="slider-hint">% of teams under punitive failure culture — McKinsey Global Institute: punitive cultures lose 20–30% of potential productivity; Edmondson (HBS) Right Kind of Wrong 2023: failure safety = innovation predictor</div>
       </div>
 
       <!-- Slider 4 -->
       <div class="slider-block">
         <div class="slider-top">
           <div class="slider-name-wrap">
-            <span class="slider-name">Communication & Feedback Debt</span>
-            <span class="slider-sublabel">Chronic gaps in clarity, timeliness, and quality of feedback across all levels</span>
+            <span class="slider-name">Communication Lag & Feedback Debt</span>
+            <span class="slider-sublabel">Chronic delays and gaps in clarity, timeliness, and quality of feedback across all levels</span>
           </div>
           <span class="slider-pct" id="vagueFeedbackVal">45%</span>
         </div>
         <input type="range" id="vagueFeedbackPct" min="0" max="80" value="45" oninput="updateSlider('vagueFeedbackPct','vagueFeedbackVal')">
-        <div class="slider-hint">% of feedback interactions failing in clarity or timing — Avg: 45%</div>
+        <div class="slider-hint">% of feedback interactions failing in clarity or timing — Work Institute 2020: 77% of turnover preventable; Kim Scott Radical Candor 2017: feedback lag primary driver of avoidable attrition</div>
       </div>
 
       <!-- Slider 5 -->
@@ -846,7 +846,7 @@
           <span class="slider-pct" id="lateFeeedbackVal">54%</span>
         </div>
         <input type="range" id="lateFeedbackPct" min="0" max="80" value="54" oninput="updateSlider('lateFeedbackPct','lateFeeedbackVal')">
-        <div class="slider-hint">% of organizations tolerating brilliant jerks despite documented cultural damage — HBS/Netflix research avg: 54%</div>
+        <div class="slider-hint">% of orgs tolerating high performer toxic behavior — HBS Dylan Minor 2015: toxic employee costs 2× a superstar hire; Porath (Georgetown): de-energizing relationships 4–7× stronger negative impact than positive ones</div>
       </div>
 
       <!-- Slider 6 -->
@@ -854,12 +854,12 @@
         <div class="slider-top">
           <div class="slider-name-wrap">
             <span class="slider-name">Shadow Management</span>
-            <span class="slider-sublabel">VP/manager time consumed managing cultural friction instead of driving innovation and strategy</span>
+            <span class="slider-sublabel">% of VP (leadership) time consumed managing cultural friction instead of driving innovation and strategy</span>
           </div>
           <span class="slider-pct" id="shadowVal">35%</span>
         </div>
         <input type="range" id="shadowPct" min="0" max="80" value="35" oninput="updateSlider('shadowPct','shadowVal')">
-        <div class="slider-hint">% of VP/leadership time consumed by cultural debt maintenance — Harvard CEO study: 36–42% reactive mode; direct salary waste = $90K–$144K/yr per VP</div>
+        <div class="slider-hint">Harvard CEO Study 2018: 36% of leader time in reactive mode; Accountemps: managers spend 18% of time on conflict — over 7 hrs/week; total VP impact = 8.7× their annual compensation (HBS)</div>
       </div>
 
       <div class="nav">
@@ -915,7 +915,7 @@
           <div class="bc-desc">Innovation suppression and talent loss driven by punitive failure culture</div>
         </div>
         <div class="bc">
-          <div class="bc-label">Communication & Feedback Debt</div>
+          <div class="bc-label">Communication Lag & Feedback Debt</div>
           <div class="bc-sublabel">Rework & Attrition Cost</div>
           <div class="bc-amount" id="attritionCost">—</div>
           <div class="bc-desc">Cost of chronic gaps in clarity, timeliness, and quality of feedback</div>
@@ -1003,34 +1003,39 @@
     const totalPayroll = employees * salary;
 
     // 1. Manager Capability Gap
-    const incivilCost = employees * incivilityPct * salary * 0.048;
+    // Gallup 2025: 70% of engagement variance from manager; disengagement costs 34% of salary
+    // % of managers underperforming × all employees affected × 34% salary loss
+    const incivilCost = employees * incivilityPct * salary * 0.34;
 
-    // 2. Voice Suppression — unreported bugs, withheld ideas, blocked velocity
-    const challengerCost = employees * microtoxPct * salary * 0.15;
+    // 2. Voice Suppression
+    // Google Project Aristotle: low psych safety = 19% productivity loss
+    // Amy Edmondson: teams without voice suppression 12-19% more innovative
+    const challengerCost = employees * microtoxPct * salary * 0.19;
 
-    // 3. Failure Punishment Reflex — innovation velocity loss
-    const vagueCost = totalPayroll * challengerPct * 0.18;
+    // 3. Failure Punishment Reflex
+    // McKinsey: punitive cultures lose 20-30% of potential productivity
+    // Using conservative 20% of affected team payroll
+    const vagueCost = totalPayroll * challengerPct * 0.20;
 
-    // 4. Communication & Feedback Debt — rework, misdirected effort, attrition
-    const atRiskStaff = employees * vaguePct * 0.18;
+    // 4. Communication Lag & Feedback Debt
+    // Work Institute 2020: 77% of turnover preventable; poor feedback = primary driver
+    // Replacement cost 1.5-2x salary; using 1.5x for conservative estimate
+    const atRiskStaff = employees * vaguePct * 0.20;
     const attritionCost = atRiskStaff * salary * (replacePct / 100);
 
-    // 5. Brilliant Jerk Immunity — HBS: toxic employee costs 2x a superstar hire
-    const feedbackCost = employees * latePct * salary * 0.12;
+    // 5. Brilliant Jerk Immunity
+    // HBS Dylan Minor 2015: toxic employee costs 2x the value of a superstar hire
+    // Porath: de-energizing relationships 4-7x stronger negative impact
+    const feedbackCost = employees * latePct * salary * 0.22;
 
     // 6. Shadow Management — three-layer research-based calculation
     // Layer 1: Direct VP salary sunk cost (Harvard CEO study: 36-42% time in reactive mode)
-    // Using VP compensation estimate of $280K average; shadowPct = % of time on cultural debt
     const vpCompEstimate = 280000;
     const shadowDirectCost = vpCompEstimate * shadowPct;
-
-    // Layer 2: Org-wide productivity erosion (research: 7-9% productivity decrease from ineffective leadership)
+    // Layer 2: Org-wide productivity erosion (research: 7-9% productivity decrease)
     const shadowProductivityLoss = totalPayroll * 0.08;
-
-    // Layer 3: Conflict cost attribution (U.S. employers lose $359B annually; prorated by org size)
-    // Average U.S. workforce ~160M; org's share = employees/160M * $359B
+    // Layer 3: Conflict cost attribution ($359B annual U.S. conflict cost, prorated by org size)
     const shadowConflictCost = (employees / 160000000) * 359000000000 * shadowPct;
-
     const shadowCost = shadowDirectCost + (shadowProductivityLoss * shadowPct) + shadowConflictCost;
 
     const total = incivilCost + challengerCost + vagueCost + attritionCost + feedbackCost + shadowCost;
