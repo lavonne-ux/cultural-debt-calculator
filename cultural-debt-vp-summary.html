@@ -81,11 +81,9 @@
     z-index: 2;
   }
 
-  /* Total card - white with teal top border */
+  /* Total card - gradient matching header */
   .total-card {
-    background: var(--white);
-    border: 1.5px solid var(--border);
-    border-top: 4px solid var(--teal);
+    background: linear-gradient(135deg, #091E42 0%, #0D2B6E 25%, #1A5CB8 55%, #00B4A6 80%, #5BC8C0 100%);
     border-radius: 12px;
     padding: 24px 28px;
     display: flex;
@@ -102,7 +100,7 @@
     font-weight: 600;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: rgba(255,255,255,0.7);
     margin-bottom: 6px;
   }
 
@@ -110,11 +108,11 @@
     font-family: 'Playfair Display', serif;
     font-size: clamp(38px, 8vw, 56px);
     font-weight: 700;
-    color: var(--teal-dark);
+    color: var(--white);
     line-height: 1;
   }
 
-  .total-label { font-size: 11px; color: var(--muted); margin-top: 4px; }
+  .total-label { font-size: 11px; color: rgba(255,255,255,0.65); margin-top: 4px; }
 
   /* Severity section */
   .severity-wrap { min-width: 200px; flex: 1; max-width: 260px; }
@@ -124,7 +122,7 @@
     font-weight: 600;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: rgba(255,255,255,0.7);
     margin-bottom: 10px;
   }
 
@@ -150,7 +148,7 @@
     margin-bottom: 10px;
   }
 
-  .sev-label { font-size: 9px; color: var(--muted); }
+  .sev-label { font-size: 9px; color: rgba(255,255,255,0.65); }
 
   .sev-badge {
     display: inline-block;
@@ -167,12 +165,12 @@
   .sev-severe   { background: rgba(200,50,50,0.10);   color: #b02020; border: 1.5px solid #cc3333; }
   .sev-critical { background: rgba(160,0,0,0.10);     color: #8b0000; border: 1.5px solid #aa0000; }
 
-  .sev-desc { font-size: 10px; color: var(--muted); }
+  .sev-desc { font-size: 10px; color: rgba(255,255,255,0.65); }
 
   /* Cost table */
   .cost-table {
     background: var(--white);
-    border: 1.5px solid var(--border);
+    border: 2px solid #0D2B6E;
     border-radius: 12px;
     overflow: hidden;
     margin-bottom: 14px;
@@ -320,19 +318,10 @@
 
 <div class="header">
   <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:12px;">
-    <div style="
-      background: white;
-      border-radius: 12px;
-      padding: 10px 24px;
-      display: inline-flex;
-      align-items: center;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.12);
-    ">
-      <img src="https://raw.githubusercontent.com/lavonne-ux/cultural-debt-calculator/main/L3A-i.png"
-           alt="Culture Shift Consulting Group"
-           style="height:70px; width:auto; display:block;"
-           onerror="this.style.display='none'">
-    </div>
+    <img src="https://raw.githubusercontent.com/lavonne-ux/cultural-debt-calculator/main/cscg-logo-transparent.png"
+         alt="Culture Shift Consulting Group"
+         style="height:80px; width:auto; display:block;"
+         onerror="this.style.display='none'">
     <div class="report-date" id="reportDate"></div>
   </div>
   <div class="header-title">Cultural Debt™ Summary</div>
