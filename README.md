@@ -10,71 +10,131 @@ An interactive business intelligence tool built for VPs of Engineering and R&D t
 
 ---
 
-## Live Tool
+## Your Live Tool URLs
 
 **Calculator:**
-https://lavonne-ux.github.io/cultural-debt-calculator/cultural-debt-calculator.html
+`https://Armers-ops.github.io/cultural-debt-calculator/cultural-debt-calculator.html`
 
 **VP Summary Report:**
-https://lavonne-ux.github.io/cultural-debt-calculator/cultural-debt-vp-summary.html
+`https://Armers-ops.github.io/cultural-debt-calculator/cultural-debt-vp-summary.html`
+
+**AI Debt Calculator (standalone — linked from VP Summary):**
+`https://Armers-ops.github.io/cultural-debt-calculator/ai-debt-calculator.html`
+
+**Consulting Brief (internal use only):**
+`https://Armers-ops.github.io/cultural-debt-calculator/cultural-debt-armers-brief.html`
 
 ---
 
-## Files
+## Files in This Repository
 
 | File | Purpose |
 |---|---|
 | `cultural-debt-calculator.html` | Client-facing 3-step calculator |
-| `cultural-debt-vp-summary.html` | Terse executive summary — opens automatically after submission |
+| `cultural-debt-vp-summary.html` | Executive summary — auto-opens after submission |
+| `ai-debt-calculator.html` | Standalone AI Debt diagnostic — linked from VP Summary |
 | `cultural-debt-armers-brief.html` | Internal consulting brief — not for client distribution |
-| `cscg-logo-transparent.png` | Culture Shift Consulting Group logo — transparent background |
-| `index.html` | Redirect to calculator |
+| `cscg-logo-white-text.png` | Culture Shift Consulting Group logo — white text for dark backgrounds |
+| `index.html` | Redirects base URL to the calculator |
+| `README.md` | This file |
 
 ---
 
 ## The Six Cultural Debt Drivers
 
-Ranked by organizational leverage:
-
-1. **Manager Capability Gap** — Root amplifier; creates all other debts
-2. **Voice Suppression** — Gateway debt; blocks all other debt from being surfaced
-3. **Failure Punishment Reflex** — Kills innovation velocity in R&D and engineering
-4. **Communication Lag & Feedback Debt** — Connective tissue; amplifies all four above
-5. **Brilliant Jerk Immunity** — Tolerated toxicity driving attrition and suppressing output
-6. **Shadow Management** — The closing argument; VP time consumed by cultural friction
+| # | Driver | What It Measures |
+|---|---|---|
+| 1 | **Manager Capability Gap** | Root amplifier — creates and worsens all other debts |
+| 2 | **Psychological Safety Deficit** | Voice Suppression + Failure Punishment Reflex combined (15% overlap discount) |
+| 3 | **Decision Velocity Debt** | Cost of slow, unclear, or avoided decisions across engineering leadership |
+| 4 | **Cross-Functional Friction Debt** | Misalignment and communication breakdown between engineering and adjacent functions |
+| 5 | **Shadow Management** | VP time and salary consumed managing cultural friction instead of innovation |
+| 6 | **Brilliant Jerk Immunity** | Tolerated toxicity driving attrition and suppressing team output |
 
 ---
 
 ## Calculation Methodology
 
-Each driver uses research-backed multipliers:
+### Base Variable
+```
+totalPayroll = employees × salary
+```
 
-| Driver | Formula Basis | Research Source |
-|---|---|---|
-| Manager Capability Gap | 34% of salary per disengaged employee | Gallup 2025 |
-| Voice Suppression | 19% productivity loss from low psych safety | Google Project Aristotle 2016 |
-| Failure Punishment Reflex | 20% of affected team payroll | McKinsey Global Institute |
-| Communication Lag & Feedback Debt | 20% replacement cost of at-risk staff | Work Institute 2020 |
-| Brilliant Jerk Immunity | 22% of salary per affected employee | HBS Dylan Minor 2015 |
-| Shadow Management | VP salary waste + 8% org productivity + conflict cost attribution | Harvard CEO Study 2018; $359B U.S. conflict cost |
+### Driver Formulas
+
+**1. Manager Capability Gap**
+```
+employees × managerPct × salary × 0.34
+```
+Source: Gallup 2025 — disengagement costs 34% of salary per affected employee
+
+**2. Psychological Safety Deficit (Combined)**
+```
+rawVoiceCost   = employees × psychPct × salary × 0.19
+rawFailureCost = totalPayroll × psychPct × 0.20
+psychSafetyCost = (rawVoiceCost + rawFailureCost) × 0.85
+```
+0.85 discount eliminates the ~15% double-count on shared psychological safety root cause.
+Sources: Google Project Aristotle 2016; McKinsey 2022
+
+**3. Decision Velocity Debt**
+```
+totalPayroll × decisionPct × 0.15
+```
+Sources: McKinsey & Company, Reimagine Decision Making, 2020; McKinsey Global Tech Agenda, 2026
+
+**4. Cross-Functional Friction Debt**
+```
+totalPayroll × crossFuncPct × 0.22
+```
+Sources: Standish Group CHAOS Report, 2020; McKinsey Digital Transformation Research, 2023
+
+**5. Shadow Management — 3-Layer Formula**
+```
+Layer 1: $220,000 × shadowPct
+Layer 2: totalPayroll × 0.08 × shadowPct
+Layer 3: (employees ÷ 160,000,000) × $359,000,000,000 × shadowPct
+shadowCost = Layer1 + Layer2 + Layer3
+```
+VP salary basis: $220,000 midpoint — PayScale 2026 ($189,022), Indeed 2026 ($211,505), Salary.com 2025 ($244,877).
+Source: Harvard CEO Study 2018; CPP Inc./Myers-Briggs
+
+**6. Brilliant Jerk Immunity**
+```
+employees × brilliantJerkPct × salary × 0.22
+```
+Source: Dylan Minor HBS 2015; Christine Porath Georgetown 2022
 
 ---
 
-## How It Works
+## How the Tool Works
 
-1. VP fills out the 3-step calculator — workforce inputs + 6 cultural debt sliders
-2. Results page shows total Cultural Debt cost with breakdown by driver
-3. VP enters email — VP Summary Report opens automatically in a new tab
-4. Email is sent via EmailJS with a personalized report link
-5. Armers receives a BCC copy of every submission
+1. VP completes Step 1 — workforce inputs
+2. VP completes Step 2 — adjusts 6 cultural debt sliders
+3. Results page shows total Cultural Debt™ cost broken down across all 6 drivers
+4. VP enters email — VP Summary opens automatically in a new tab
+5. VP Summary shows cost breakdown with research citations
+6. VP clicks **Calculate AI Debt →** — passes headcount and salary to AI Debt Calculator
+7. Armers receives BCC of every submission at armers@csc-grp.com
 
 ---
 
-## WordPress Embed
+## EmailJS Configuration
+
+| Setting | Value |
+|---|---|
+| Public Key | `kTIzJ4hpEYE4LWi-w` |
+| Service ID | `service_mefsi0n` |
+| Template ID | `fj6x3a8` |
+| BCC | `armers@csc-grp.com` |
+
+---
+
+## WordPress Embed Code
 
 ```html
 <iframe
-  src="https://lavonne-ux.github.io/cultural-debt-calculator/cultural-debt-calculator.html"
+  src="https://Armers-ops.github.io/cultural-debt-calculator/cultural-debt-calculator.html"
   width="100%"
   height="900px"
   frameborder="0"
@@ -82,6 +142,12 @@ Each driver uses research-backed multipliers:
   style="border:none; border-radius:12px; max-width:780px; display:block; margin:0 auto;">
 </iframe>
 ```
+
+---
+
+## Intellectual Property
+
+Cultural Debt™ and Cultural Debt Index™ are the exclusive intellectual property of Armers Moncure and Culture Shift Consulting Group. Not for redistribution without written permission.
 
 ---
 

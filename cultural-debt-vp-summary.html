@@ -57,7 +57,7 @@
 
   .header-title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(22px, 4vw, 30px);
+    font-size: clamp(18px, 3vw, 24px);
     font-weight: 700;
     color: var(--white);
   }
@@ -318,7 +318,7 @@
   <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:12px;">
     <img src="https://raw.githubusercontent.com/Armers-ops/cultural-debt-calculator/main/cscg-logo-white-text.png"
          alt="Culture Shift Consulting Group"
-         style="height:clamp(100px,18vw,160px); width:auto; max-width:70%; display:block;"
+         style="height:clamp(140px,24vw,220px); width:auto; max-width:70%; display:block;"
          onerror="this.style.display='none'">
     <div class="report-date" id="reportDate"></div>
   </div>
@@ -372,17 +372,7 @@
           <div class="cost-driver">Psychological Safety Deficit</div>
           <div class="cost-driver-sub">Voice Suppression + Failure Punishment Reflex — Combined</div>
         </div>
-        <div class="cost-amount" id="vpChallengerCost">—</div>
-      </div>
-    </div>
-
-    <div class="driver-card">
-      <div class="cost-row">
-        <div>
-          <div class="cost-driver">Communication Lag & Feedback Debt</div>
-          <div class="cost-driver-sub">Rework & Attrition Cost</div>
-        </div>
-        <div class="cost-amount" id="vpAttritionCost">—</div>
+        <div class="cost-amount" id="vpPsychCost">—</div>
       </div>
     </div>
 
@@ -399,10 +389,10 @@
     <div class="driver-card">
       <div class="cost-row">
         <div>
-          <div class="cost-driver">Brilliant Jerk Immunity</div>
-          <div class="cost-driver-sub">Tolerated Toxicity Cost</div>
+          <div class="cost-driver">Cross-Functional Friction Debt</div>
+          <div class="cost-driver-sub">Misalignment & Rework Cost</div>
         </div>
-        <div class="cost-amount" id="vpFeedbackCost">—</div>
+        <div class="cost-amount" id="vpCrossFunc">—</div>
       </div>
     </div>
 
@@ -416,6 +406,16 @@
       </div>
     </div>
 
+    <div class="driver-card">
+      <div class="cost-row">
+        <div>
+          <div class="cost-driver">Brilliant Jerk Immunity</div>
+          <div class="cost-driver-sub">Tolerated Toxicity Cost</div>
+        </div>
+        <div class="cost-amount" id="vpFeedbackCost">—</div>
+      </div>
+    </div>
+
   </div>
 
   <!-- 3 Citation Boxes — Option A: 2 drivers per box -->
@@ -426,12 +426,12 @@
       <div class="cite-group-sources">Gallup State of the American Manager, 2015 · Gallup State of the Global Workplace, 2025 · Google Project Aristotle, 2016 · McKinsey Global Institute, 2022</div>
     </div>
     <div class="cite-box-group">
-      <div class="cite-group-driver">Communication Lag & Feedback Debt · Decision Velocity Debt</div>
-      <div class="cite-group-sources">Work Institute Retention Report, 2020 · Kim Scott, Radical Candor (2nd ed.), 2022 · Bain & Company RAPID Decision Framework · McKinsey Global Tech Agenda, 2026</div>
+      <div class="cite-group-driver">Decision Velocity Debt · Cross-Functional Friction Debt</div>
+      <div class="cite-group-sources">McKinsey & Company, Reimagine Decision Making, 2020 · McKinsey Global Tech Agenda, 2026 · Standish Group CHAOS Report, 2020 · McKinsey Digital Transformation Research, 2023</div>
     </div>
     <div class="cite-box-group">
-      <div class="cite-group-driver">Brilliant Jerk Immunity · Shadow Management</div>
-      <div class="cite-group-sources">Dylan Minor, Harvard Business School Toxic Workers Study, 2015 · Christine Porath, Georgetown University, 2022 · Harvard CEO Study, 2018 · PayScale / Indeed / Salary.com — VP of Engineering $220K midpoint</div>
+      <div class="cite-group-driver">Shadow Management · Brilliant Jerk Immunity</div>
+      <div class="cite-group-sources">Harvard CEO Study, 2018 · PayScale 2026 / Indeed 2026 / Salary.com 2025 — VP of Engineering $220K midpoint · Dylan Minor, Harvard Business School, 2015 · Christine Porath, Georgetown University, 2022</div>
     </div>
   </div>
 
@@ -458,7 +458,7 @@
       <div style="font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#0D2B6E; margin-bottom:4px;">Add Your AI Investment Cost</div>
       <div style="font-size:13px; color:var(--muted); line-height:1.5;">Your Cultural Debt total does not include the cost of AI Adoption Friction. Calculate your AI Debt to see the full organizational cost picture.</div>
     </div>
-    <a id="aiDebtLink" href="https://Armers-ops.github.io/cultural-debt-calculator/ai-debt-calculator.html" target="_blank" style="
+    <a id="aiDebtLink" href="ai-debt-calculator.html" target="_blank" style="
       background: linear-gradient(135deg, #091E42 0%, #0D2B6E 25%, #1A5CB8 55%, #00B4A6 80%, #5BC8C0 100%);
       color: white;
       padding: 12px 24px;
@@ -500,20 +500,20 @@
   const get = k => parseFloat(p.get(k)) || 0;
 
   if (p.has('total')) {
-    document.getElementById('vpTotal').textContent          = fmt(get('total'));
-    document.getElementById('vpIncivilCost').textContent    = fmt(get('ic'));
-    document.getElementById('vpChallengerCost').textContent = fmt(get('cc'));
-    document.getElementById('vpAttritionCost').textContent  = fmt(get('ac'));
-    document.getElementById('vpDecisionCost').textContent   = fmt(get('dc'));
-    document.getElementById('vpFeedbackCost').textContent   = fmt(get('fc'));
-    document.getElementById('vpShadowCost').textContent     = fmt(get('sc'));
+    document.getElementById('vpTotal').textContent      = fmt(get('total'));
+    document.getElementById('vpIncivilCost').textContent = fmt(get('ic'));
+    document.getElementById('vpPsychCost').textContent   = fmt(get('ps'));
+    document.getElementById('vpDecisionCost').textContent = fmt(get('dc'));
+    document.getElementById('vpCrossFunc').textContent   = fmt(get('cf'));
+    document.getElementById('vpShadowCost').textContent  = fmt(get('sc'));
+    document.getElementById('vpFeedbackCost').textContent = fmt(get('fc'));
 
     // Wire AI Debt link — pass employees and salary from calculator params
     const aiLink = document.getElementById('aiDebtLink');
     if (aiLink) {
       const emp = p.get('ip') || '';
       const sal = p.get('vp') || '';
-      aiLink.href = `https://Armers-ops.github.io/cultural-debt-calculator/ai-debt-calculator.html?employees=${emp}&salary=${sal}`;
+      aiLink.href = `ai-debt-calculator.html?employees=${emp}&salary=${sal}`;
     }
 
     const avg    = parseFloat(p.get('avg')) || 0;

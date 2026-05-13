@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Consulting Brief — Culture Shift Consulting Group</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --aqua-grad: linear-gradient(135deg, #091E42 0%, #0D2B6E 25%, #1A5CB8 55%, #00B4A6 80%, #5BC8C0 100%);
+    --navy:      #0f1f3d;
+    --navy-mid:  #1b3358;
+    --teal:      #00B4A6;
+    --teal-dark: #0D2B6E;
+    --white:     #ffffff;
+    --off-white: #f4fafa;
+    --muted:     #5a7a8a;
+    --border:    #d0e8ec;
+    --shadow:    0 4px 20px rgba(15,31,61,0.08);
+    --green:     #3ecf7a;
+    --amber:     #f4a261;
+    --red:       #e05555;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--off-white);
+    font-family: 'DM Sans', sans-serif;
+    color: var(--navy);
+    min-height: 100vh;
+  }
+
+  .header {
+    background: var(--aqua-grad);
+    padding: 32px 40px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0; right: 0;
+    height: 48px;
+    background: var(--off-white);
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+
+  .header-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .logo-pill {
+    display: inline-flex;
+    background: white;
+    border-radius: 12px;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+  }
+
+  .logo-pill img {
+    height: 60px;
+    width: auto;
+    display: block;
+  }
+
+  .logo-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .internal-badge {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+
+  .header-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 4vw, 28px);
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+
+  .header-sub {
+    font-size: 12px;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .body {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 32px 24px 60px;
+  }
+
+  /* Section titles */
+  .sec-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+
+  .sec-bar {
+    height: 3px;
+    width: 48px;
+    background: var(--aqua-grad);
+    border-radius: 2px;
+    margin-bottom: 18px;
+  }
+
+  .section-wrap { margin-bottom: 40px; }
+
+  /* Highlight box */
+  .highlight {
+    background: rgba(0,180,166,0.08);
+    border: 1.5px solid rgba(0,180,166,0.25);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+    font-size: 13px;
+    color: var(--navy);
+    line-height: 1.7;
+  }
+
+  .highlight strong { color: var(--navy); font-weight: 600; }
+
+  /* Debt driver cards */
+  .driver-card {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow);
+  }
+
+  .driver-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    background: var(--off-white);
+    border-bottom: 1px solid var(--border);
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .driver-rank {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--aqua-grad);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--white);
+    flex-shrink: 0;
+  }
+
+  .driver-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+    flex: 1;
+  }
+
+  .driver-cost {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #0D2B6E;
+  }
+
+  .driver-body {
+    padding: 18px 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+
+  @media (max-width: 540px) { .driver-body { grid-template-columns: 1fr; } }
+
+  .col-title {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #0D2B6E;
+    margin-bottom: 10px;
+  }
+
+  .col-point {
+    display: flex;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--navy);
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+
+  .col-point::before {
+    content: '›';
+    color: var(--teal);
+    font-weight: 700;
+    font-size: 15px;
+    flex-shrink: 0;
+    line-height: 1.2;
+  }
+
+  .citation {
+    font-size: 10px;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 4px;
+    padding-left: 16px;
+    opacity: 0.8;
+  }
+
+  /* Revenue table */
+  .rev-table {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin-bottom: 16px;
+  }
+
+  .rev-header {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 12px;
+    padding: 10px 20px;
+    background: var(--aqua-grad);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.95);
+  }
+
+  .rev-row {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 12px;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    align-items: center;
+  }
+
+  .rev-row:last-child { border-bottom: none; }
+  .rev-row:nth-child(even) { background: var(--off-white); }
+
+  .rev-service { font-size: 13px; font-weight: 600; color: var(--navy); }
+  .rev-service-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .rev-sessions { font-size: 12px; color: var(--muted); text-align: right; white-space: nowrap; }
+  .rev-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: #0D2B6E;
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .rev-total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    background: var(--aqua-grad);
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .rev-total-label { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.9); }
+  .rev-total-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  /* Roadmap */
+  .roadmap-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  @media (max-width: 560px) { .roadmap-grid { grid-template-columns: 1fr; } }
+
+  .rm-card {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+
+  .rm-head {
+    background: var(--aqua-grad);
+    padding: 12px 14px;
+    text-align: center;
+  }
+
+  .rm-timeline {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 3px;
+  }
+
+  .rm-phase {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--white);
+  }
+
+  .rm-body { padding: 14px; }
+
+  .rm-item {
+    display: flex;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--navy);
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .rm-item::before {
+    content: '→';
+    color: var(--teal);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* Objections */
+  .obj-card {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    box-shadow: var(--shadow);
+  }
+
+  .obj-q {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 8px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .obj-q-badge {
+    background: var(--aqua-grad);
+    color: var(--white);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .obj-a {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+    padding-left: 28px;
+  }
+
+  .obj-a strong { color: var(--navy); }
+
+  .footer {
+    text-align: center;
+    padding: 24px;
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--muted);
+    opacity: 0.6;
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="logo-row">
+      <img src="https://raw.githubusercontent.com/Armers-ops/cultural-debt-calculator/main/cscg-logo-white-text.png"
+           alt="Culture Shift Consulting Group"
+           style="height:80px; width:auto; display:block;"
+           onerror="this.style.display='none'">
+      <div class="internal-badge">Internal · Consultant Brief</div>
+    </div>
+    <div class="header-title">Cultural Debt™ Consulting Brief</div>
+    <div class="header-sub">What to consult on · Mitigation plan · Revenue opportunity · Objection handling</div>
+  </div>
+</div>
+
+<div class="body">
+
+  <!-- SECTION 1: WHAT TO CONSULT ON -->
+  <div class="section-wrap">
+    <div class="sec-title">What to Consult On</div>
+    <div class="sec-bar"></div>
+
+    <div class="highlight">
+      <strong>Your entry point:</strong> The VP has seen their dollar figure. Your job in the consultation is to move from "here's your number" to "here's exactly where it's coming from and what we do about it." Each of the six drivers below is a distinct consulting conversation — and a distinct revenue opportunity. Lead with the largest cost driver first — that is always Manager Capability Gap.
+    </div>
+
+    <!-- Driver 1 -->
+    <div class="driver-card">
+      <div class="driver-header">
+        <div class="driver-rank">1</div>
+        <div class="driver-name">Manager Capability Gap</div>
+        <div class="driver-cost" id="d1cost">—</div>
+      </div>
+      <div class="driver-body">
+        <div>
+          <div class="col-title">Consultation Talking Points</div>
+          <div class="col-point">Ask: "What percentage of your managers have received formal leadership development in the last 12 months?" — silence answers the question</div>
+          <div class="col-point">Lead with the number: 70% of engagement variance comes directly from the manager — Gallup 2025</div>
+          <div class="col-point">Frame: "This isn't a talent problem — it's a capability infrastructure problem. Your managers were promoted for technical skills, not people leadership."</div>
+          <div class="col-point">Connect: Every other debt driver on this page is made worse by a manager who lacks the capability to address it</div>
+          <div class="citation">Sources: Gallup State of the American Manager, 2015 · Gallup State of the Global Workplace, 2025</div>
+        </div>
+        <div>
+          <div class="col-title">Mitigation Plan</div>
+          <div class="col-point">Manager capability assessment — baseline by team within 30 days</div>
+          <div class="col-point">Leadership development intensive — 4-session program for engineering managers</div>
+          <div class="col-point">Manager accountability framework — quarterly capability reviews tied to team performance metrics</div>
+          <div class="col-point">Coaching program — 1:1 executive coaching for highest-leverage managers</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Driver 2 -->
+    <div class="driver-card">
+      <div class="driver-header">
+        <div class="driver-rank">2</div>
+        <div class="driver-name">Psychological Safety Deficit</div>
+        <div class="driver-cost" id="d2cost">—</div>
+      </div>
+      <div class="driver-body">
+        <div>
+          <div class="col-title">Consultation Talking Points</div>
+          <div class="col-point">Ask: "When was the last time an Engineer or Developer changed a senior architect's decision?" — silence tells you everything about voice suppression</div>
+          <div class="col-point">Ask: "How does your team respond when a sprint fails or a deployment breaks production?" — the answer reveals the failure culture instantly</div>
+          <div class="col-point">Google Project Aristotle 2016: psychological safety is the #1 predictor of engineering team performance — above talent, seniority, or team composition</div>
+          <div class="col-point">Frame: "Voice suppression and punitive failure culture are two sides of the same coin. Both destroy the psychological safety your engineers need to build great products."</div>
+          <div class="col-point">McKinsey 2022: punitive cultures lose 20–30% of potential productivity; teams stop taking the risks that produce breakthroughs</div>
+          <div class="citation">Sources: Google Project Aristotle, 2016 · McKinsey Global Institute, 2022</div>
+        </div>
+        <div>
+          <div class="col-title">Mitigation Plan</div>
+          <div class="col-point">Psychological safety baseline — measured by team, not organization-wide</div>
+          <div class="col-point">Challenger safety training — structured dissent protocols for Engineers and Developers</div>
+          <div class="col-point">Blameless post-mortem protocol — implemented across all engineering teams</div>
+          <div class="col-point">Innovation safety framework — defined risk tolerance by team type</div>
+          <div class="col-point">Leadership modeling — VP demonstrates both openness to challenge and failure acceptance within 30 days</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Driver 3 -->
+    <div class="driver-card">
+      <div class="driver-header">
+        <div class="driver-rank">3</div>
+        <div class="driver-name">Decision Velocity Debt</div>
+        <div class="driver-cost" id="d3cost">—</div>
+      </div>
+      <div class="driver-body">
+        <div>
+          <div class="col-title">Consultation Talking Points</div>
+          <div class="col-point">Ask: "How long does it take your organization to go from a decision needed to a decision made on a major architectural or product choice?"</div>
+          <div class="col-point">Ask: "Who has the authority to make a final call — and does everyone actually know that?"</div>
+          <div class="col-point">McKinsey 2026: decisions at top-performing companies happen within days not months — slow-decision organizations sacrifice 15% of payroll value in friction</div>
+          <div class="col-point">Frame: "Every decision your engineers are waiting on is a decision your competitors are already executing."</div>
+          <div class="citation">Sources: McKinsey & Company, Reimagine Decision Making, 2020 · McKinsey Global Tech Agenda, 2026</div>
+        </div>
+        <div>
+          <div class="col-title">Mitigation Plan</div>
+          <div class="col-point">Decision rights mapping — document who decides what across the engineering org within 30 days</div>
+          <div class="col-point">RAPID framework implementation — assign Recommend, Agree, Perform, Input, Decide roles for recurring decisions</div>
+          <div class="col-point">Decision SLA mandate — define maximum time-to-decision by decision type</div>
+          <div class="col-point">Quarterly decision postmortems — review where decisions stalled and why</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Driver 4 -->
+    <div class="driver-card">
+      <div class="driver-header">
+        <div class="driver-rank">4</div>
+        <div class="driver-name">Cross-Functional Friction Debt</div>
+        <div class="driver-cost" id="d4cost">—</div>
+      </div>
+      <div class="driver-body">
+        <div>
+          <div class="col-title">Consultation Talking Points</div>
+          <div class="col-point">Ask: "When engineering ships something that misses the mark — how much of that is a misalignment with Product, Design, or another function versus a pure engineering failure?"</div>
+          <div class="col-point">Standish Group CHAOS Report 2020: 66% of technology projects end in partial or total failure globally — cross-functional misalignment is a primary driver</div>
+          <div class="col-point">Frame: "Your engineers are not building the wrong things because they are incompetent. They are building the wrong things because the cross-functional handoffs are broken."</div>
+          <div class="col-point">McKinsey 2023: post-failure remediation costs add 20–30% to original project budgets in 69% of cases</div>
+          <div class="citation">Sources: Standish Group CHAOS Report, 2020 · McKinsey Digital Transformation Research, 2023</div>
+        </div>
+        <div>
+          <div class="col-title">Mitigation Plan</div>
+          <div class="col-point">Cross-functional alignment audit — map handoff points between engineering and Product, Design, Data, Legal, Finance</div>
+          <div class="col-point">Shared definition of done — agreed criteria across functions before work begins</div>
+          <div class="col-point">Embedded cross-functional reviews — at sprint planning, not just at delivery</div>
+          <div class="col-point">Accountability pairing — named counterpart in each adjacent function for every engineering team</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Driver 5 -->
+    <div class="driver-card">
+      <div class="driver-header">
+        <div class="driver-rank">5</div>
+        <div class="driver-name">Brilliant Jerk Immunity</div>
+        <div class="driver-cost" id="d5cost">—</div>
+      </div>
+      <div class="driver-body">
+        <div>
+          <div class="col-title">Consultation Talking Points</div>
+          <div class="col-point">Ask: "Do you have any high performers whose behavior you've been managing around rather than addressing directly?" — the pause before the answer is your data</div>
+          <div class="col-point">HBS Dylan Minor 2015: one toxic employee costs the organization more than twice the value of a superstar hire</div>
+          <div class="col-point">Frame: "Tolerated toxicity is a choice with a price tag. The cost of keeping this person is greater than the cost of losing their output."</div>
+          <div class="col-point">Porath Georgetown 2022: de-energizing relationships have 4–7× stronger negative impact than positive relationships have positive impact</div>
+          <div class="citation">Sources: Dylan Minor, Harvard Business School Toxic Workers Study, 2015 · Christine Porath, Georgetown University, 2022</div>
+        </div>
+        <div>
+          <div class="col-title">Mitigation Plan</div>
+          <div class="col-point">Tolerated toxicity audit — identify and document all instances within 30 days</div>
+          <div class="col-point">Behavioral accountability protocol — clear documented expectations with consequences</div>
+          <div class="col-point">Performance separation framework — decouple technical output from behavioral standards</div>
+          <div class="col-point">Leadership coaching — VP support through the difficult conversation process</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Driver 6 -->
+    <div class="driver-card">
+      <div class="driver-header">
+        <div class="driver-rank">6</div>
+        <div class="driver-name">Shadow Management</div>
+        <div class="driver-cost" id="d6cost">—</div>
+      </div>
+      <div class="driver-body">
+        <div>
+          <div class="col-title">Consultation Talking Points</div>
+          <div class="col-point">Ask: "How much of your week is spent managing interpersonal dynamics, conflict, or culture issues that shouldn't require your attention?"</div>
+          <div class="col-point">Harvard CEO Study 2018: 36% of leader time spent in reactive mode — handling fires that should have been managed at lower levels</div>
+          <div class="col-point">Frame: "This is the closing argument. Every dollar on this report flows upward and lands on your desk. Shadow management is what that cost looks like in your calendar."</div>
+          <div class="col-point">At a VP of Engineering median salary of $220,000 — the portion spent on cultural debt maintenance instead of innovation is a direct sunk cost to the organization</div>
+          <div class="citation">Sources: Harvard CEO Study, 2018 · PayScale 2026 · Indeed 2026 · Salary.com 2025</div>
+        </div>
+        <div>
+          <div class="col-title">Mitigation Plan</div>
+          <div class="col-point">VP time audit — document actual hours spent on cultural debt maintenance for 30 days</div>
+          <div class="col-point">Escalation protocol redesign — what should and should not reach VP level</div>
+          <div class="col-point">Manager accountability structure — middle management empowered to resolve cultural friction independently</div>
+          <div class="col-point">Quarterly Cultural Debt Index™ — track VP time reclaimed as intervention ROI metric</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: REVENUE OPPORTUNITY -->
+  <div class="section-wrap">
+    <div class="sec-title">Your Revenue Opportunity</div>
+    <div class="sec-bar"></div>
+
+    <div class="highlight">
+      <strong>Positioning note:</strong> The VP just saw a 7-figure number tied to their organization. Your consulting engagement is a fraction of that cost — and recovers multiples of your fee. Always lead with ROI, not your rate. Entry point recommendation: <strong>Cultural Debt Assessment at $5,000–$8,000.</strong>
+    </div>
+
+    <div class="rev-table">
+      <div class="rev-header">
+        <span>Service</span>
+        <span>Sessions</span>
+        <span>Investment</span>
+      </div>
+      <div class="rev-row">
+        <div>
+          <div class="rev-service">Cultural Debt Assessment & Baseline</div>
+          <div class="rev-service-sub">Full org diagnostic, team interviews, scoring report</div>
+        </div>
+        <div class="rev-sessions">1 engagement</div>
+        <div class="rev-price">$5,000–$8,000</div>
+      </div>
+      <div class="rev-row">
+        <div>
+          <div class="rev-service">Manager Capability Program</div>
+          <div class="rev-service-sub">Leadership development workshop series for engineering managers</div>
+        </div>
+        <div class="rev-sessions">4 sessions</div>
+        <div class="rev-price">$8,000–$12,000</div>
+      </div>
+      <div class="rev-row">
+        <div>
+          <div class="rev-service">Voice & Feedback Intensive</div>
+          <div class="rev-service-sub">Psychological safety + SBI feedback framework implementation</div>
+        </div>
+        <div class="rev-sessions">4 sessions</div>
+        <div class="rev-price">$6,000–$10,000</div>
+      </div>
+      <div class="rev-row">
+        <div>
+          <div class="rev-service">90-Day Culture Shift Engagement</div>
+          <div class="rev-service-sub">Full implementation across all six drivers with measurement</div>
+        </div>
+        <div class="rev-sessions">Retainer</div>
+        <div class="rev-price">$25,000–$40,000</div>
+      </div>
+      <div class="rev-row">
+        <div>
+          <div class="rev-service">Quarterly Pulse & Advisory</div>
+          <div class="rev-service-sub">Cultural Debt Index™ tracking, VP advisory, team coaching</div>
+        </div>
+        <div class="rev-sessions">Monthly</div>
+        <div class="rev-price">$3,500–$6,000/mo</div>
+      </div>
+      <div class="rev-total-row">
+        <div class="rev-total-label">Full Engagement Value (Year 1)</div>
+        <div class="rev-total-amount">$50,000–$80,000+</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: MITIGATION ROADMAP -->
+  <div class="section-wrap">
+    <div class="sec-title">6-Month Mitigation Roadmap</div>
+    <div class="sec-bar"></div>
+
+    <div class="roadmap-grid">
+      <div class="rm-card">
+        <div class="rm-head">
+          <div class="rm-timeline">Days 1–30</div>
+          <div class="rm-phase">Diagnose</div>
+        </div>
+        <div class="rm-body">
+          <div class="rm-item">Full cultural debt assessment across all teams</div>
+          <div class="rm-item">Psychological safety baseline per team</div>
+          <div class="rm-item">Manager capability baseline measurement</div>
+          <div class="rm-item">VP time audit — document shadow management hours</div>
+          <div class="rm-item">Brief VP on prioritized findings and cost drivers</div>
+        </div>
+      </div>
+      <div class="rm-card">
+        <div class="rm-head">
+          <div class="rm-timeline">Days 31–90</div>
+          <div class="rm-phase">Intervene</div>
+        </div>
+        <div class="rm-body">
+          <div class="rm-item">Manager capability development — all engineering managers</div>
+          <div class="rm-item">Challenger safety training — Engineers and Developers</div>
+          <div class="rm-item">SBI feedback framework deployed</div>
+          <div class="rm-item">30-day feedback cadence mandate live</div>
+          <div class="rm-item">Brilliant jerk accountability protocol activated</div>
+        </div>
+      </div>
+      <div class="rm-card">
+        <div class="rm-head">
+          <div class="rm-timeline">Days 91–180</div>
+          <div class="rm-phase">Embed</div>
+        </div>
+        <div class="rm-body">
+          <div class="rm-item">Cultural safety built into performance reviews</div>
+          <div class="rm-item">Quarterly Cultural Debt Index™ cadence</div>
+          <div class="rm-item">VP time reclaimed — measure shadow management reduction</div>
+          <div class="rm-item">ROI calculation — intervention vs. baseline cost</div>
+          <div class="rm-item">Phase 2 scope and renewal conversation</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: OBJECTION HANDLING -->
+  <div class="section-wrap">
+    <div class="sec-title">Objection Handling</div>
+    <div class="sec-bar"></div>
+
+    <div class="obj-card">
+      <div class="obj-q"><span class="obj-q-badge">Q</span>"We already have an HR team handling this."</div>
+      <div class="obj-a">HR manages compliance. <strong>Cultural debt is an operational performance problem</strong> — it lives in sprint velocity, code quality, and attrition rates, not HR policy. This engagement belongs in engineering leadership, not HR.</div>
+    </div>
+
+    <div class="obj-card">
+      <div class="obj-q"><span class="obj-q-badge">Q</span>"I'm not sure our team has a culture problem."</div>
+      <div class="obj-a">That's exactly what the data showed. <strong>The numbers came from your inputs.</strong> The calculator uses industry-validated research multipliers — the percentages you entered produced this cost. The question isn't whether the problem exists. It's whether you want to recover the cost.</div>
+    </div>
+
+    <div class="obj-card">
+      <div class="obj-q"><span class="obj-q-badge">Q</span>"What's the ROI on your engagement?"</div>
+      <div class="obj-a">Your assessment just showed a 7-figure cultural debt cost. <strong>A full engagement runs $25,000–$40,000.</strong> Organizations that implement with fidelity see 15–25% reduction in voluntary attrition and measurable sprint velocity gains within two quarters. The math is straightforward.</div>
+    </div>
+
+    <div class="obj-card">
+      <div class="obj-q"><span class="obj-q-badge">Q</span>"Can we just do a one-time training?"</div>
+      <div class="obj-a">One-time training addresses awareness, not behavior. <strong>Cultural debt is accumulated over months or years</strong> — a single session does not reverse compounding patterns. The assessment engagement is the right entry point: low investment, high clarity, clear path forward.</div>
+    </div>
+
+    <div class="obj-card">
+      <div class="obj-q"><span class="obj-q-badge">Q</span>"Our high performer is too valuable to lose."</div>
+      <div class="obj-a">HBS research shows one toxic employee costs more than twice the value of a superstar hire when you account for the people they drive out. <strong>The question is not whether you can afford to address it — it's whether you can afford not to.</strong> The number on this report includes that cost.</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Internal use only · Culture Shift Consulting Group<br>
+  cultureshiftconsultinggroup.com · Not for client distribution
+</div>
+
+<script>
+  // Read URL params passed from calculator
+  const p = new URLSearchParams(window.location.search);
+  function fmt(n) {
+    const val = parseFloat(n);
+    if (!val || isNaN(val)) return '—';
+    return '$' + Math.round(val).toLocaleString('en-US');
+  }
+
+  if (p.has('total')) {
+    document.getElementById('d1cost').textContent = fmt(p.get('ic'));  // Manager Capability Gap
+    document.getElementById('d2cost').textContent = fmt(p.get('cc'));  // Psychological Safety Deficit
+    document.getElementById('d3cost').textContent = fmt(p.get('ac'));  // Communication Lag & Feedback Debt
+    document.getElementById('d4cost').textContent = fmt(p.get('dc'));  // Decision Velocity Debt
+    document.getElementById('d5cost').textContent = fmt(p.get('fc'));  // Brilliant Jerk Immunity
+    document.getElementById('d6cost').textContent = fmt(p.get('sc'));  // Shadow Management
+  }
+</script>
+</body>
+</html>

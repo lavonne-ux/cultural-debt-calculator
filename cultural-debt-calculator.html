@@ -80,7 +80,7 @@
 
   .hero-title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(28px, 5vw, 48px);
+    font-size: clamp(22px, 3.5vw, 36px);
     font-weight: 700;
     color: var(--white);
     line-height: 1.1;
@@ -738,7 +738,7 @@
 <div class="hero-bar">
   <img src="https://raw.githubusercontent.com/Armers-ops/cultural-debt-calculator/main/cscg-logo-white-text.png"
        alt="Culture Shift Consulting Group"
-       style="height:clamp(120px,22vw,200px); width:auto; max-width:90%; display:block; margin:0 auto 24px;"
+       style="height:clamp(180px,32vw,280px); width:auto; max-width:90%; display:block; margin:0 auto 20px;"
        onerror="this.style.display='none'">
   <div class="hero-title">CULTURAL DEBT CALCULATOR</div>
   <div class="hero-title-sub">What Is Organizational Friction<br><em>Costing Your Team?</em></div>
@@ -772,7 +772,7 @@
           <label>Avg Annual Compensation <sub>per person</sub></label>
           <div class="input-wrap has-prefix">
             <span class="prefix">$</span>
-            <input type="number" id="salary" placeholder="e.g. 145,000" min="1"/>
+            <input type="number" id="salary" placeholder="e.g. 145000" min="1"/>
           </div>
         </div>
       </div>
@@ -816,7 +816,7 @@
       <div class="card-title">Where Is Cultural Debt Accumulating?</div>
       <p class="card-desc">Adjust each slider to reflect your organization's current reality. Each category shows the research sources behind the default percentage.</p>
 
-      <!-- Slider 1 -->
+      <!-- Slider 1 — Manager Capability Gap -->
       <div class="slider-block">
         <div class="slider-top">
           <div class="slider-name-wrap">
@@ -829,46 +829,20 @@
         <div class="slider-hint">Gallup State of the American Manager, 2015 · Gallup State of the Global Workplace, 2025</div>
       </div>
 
-      <!-- Slider 2 -->
+      <!-- Slider 2 — Psychological Safety Deficit -->
       <div class="slider-block">
         <div class="slider-top">
           <div class="slider-name-wrap">
-            <span class="slider-name">Voice Suppression</span>
-            <span class="slider-sublabel">Engineers and Developers unable to surface concerns, ideas, or blockers safely</span>
+            <span class="slider-name">Psychological Safety Deficit</span>
+            <span class="slider-sublabel">Voice suppression and failure punishment reflex — combined cost of self-censorship and punitive culture</span>
           </div>
-          <span class="slider-pct" id="microtoxVal">42%</span>
+          <span class="slider-pct" id="psychVal">40%</span>
         </div>
-        <input type="range" id="microtoxPct" min="0" max="80" value="42" oninput="updateSlider('microtoxPct','microtoxVal')">
-        <div class="slider-hint">Google Project Aristotle, 2016 · Amy Edmondson, The Fearless Organization (HBS), 2018</div>
+        <input type="range" id="psychPct" min="0" max="80" value="40" oninput="updateSlider('psychPct','psychVal')">
+        <div class="slider-hint">Google Project Aristotle, 2016 · McKinsey Global Institute, 2022</div>
       </div>
 
-      <!-- Slider 3 -->
-      <div class="slider-block">
-        <div class="slider-top">
-          <div class="slider-name-wrap">
-            <span class="slider-name">Failure Punishment Reflex</span>
-            <span class="slider-sublabel">Teams penalized for failure rather than supported through learning and iteration</span>
-          </div>
-          <span class="slider-pct" id="challengerVal">38%</span>
-        </div>
-        <input type="range" id="challengerPct" min="0" max="80" value="38" oninput="updateSlider('challengerPct','challengerVal')">
-        <div class="slider-hint">McKinsey Global Institute, 2022 · Amy Edmondson, Right Kind of Wrong (HBS), 2023</div>
-      </div>
-
-      <!-- Slider 4 -->
-      <div class="slider-block">
-        <div class="slider-top">
-          <div class="slider-name-wrap">
-            <span class="slider-name">Communication Lag & Feedback Debt</span>
-            <span class="slider-sublabel">Chronic delays and gaps in clarity, timeliness, and quality of feedback across all levels</span>
-          </div>
-          <span class="slider-pct" id="vagueFeedbackVal">45%</span>
-        </div>
-        <input type="range" id="vagueFeedbackPct" min="0" max="80" value="45" oninput="updateSlider('vagueFeedbackPct','vagueFeedbackVal')">
-        <div class="slider-hint">Work Institute Retention Report, 2020 · Kim Scott, Radical Candor (2nd ed.), 2022</div>
-      </div>
-
-      <!-- Slider 5 — Decision Velocity Debt -->
+      <!-- Slider 3 — Decision Velocity Debt -->
       <div class="slider-block">
         <div class="slider-top">
           <div class="slider-name-wrap">
@@ -881,20 +855,20 @@
         <div class="slider-hint">McKinsey & Company, Reimagine Decision Making, 2020 · McKinsey Global Tech Agenda, 2026</div>
       </div>
 
-      <!-- Slider 6 — Brilliant Jerk Immunity -->
+      <!-- Slider 4 — Cross-Functional Friction Debt -->
       <div class="slider-block">
         <div class="slider-top">
           <div class="slider-name-wrap">
-            <span class="slider-name">Brilliant Jerk Immunity</span>
-            <span class="slider-sublabel">High performers tolerated despite toxic behavior — tolerated toxicity damaging team culture and output</span>
+            <span class="slider-name">Cross-Functional Friction Debt</span>
+            <span class="slider-sublabel">Cost of misalignment and communication breakdown between engineering and adjacent functions</span>
           </div>
-          <span class="slider-pct" id="lateFeeedbackVal">54%</span>
+          <span class="slider-pct" id="crossFuncVal">42%</span>
         </div>
-        <input type="range" id="lateFeedbackPct" min="0" max="80" value="54" oninput="updateSlider('lateFeedbackPct','lateFeeedbackVal')">
-        <div class="slider-hint">Dylan Minor, Harvard Business School Toxic Workers Study, 2015 · Christine Porath, Georgetown University, 2022</div>
+        <input type="range" id="crossFuncPct" min="0" max="80" value="42" oninput="updateSlider('crossFuncPct','crossFuncVal')">
+        <div class="slider-hint">Standish Group CHAOS Report, 2020 · McKinsey Digital Transformation Research, 2023</div>
       </div>
 
-      <!-- Slider 6 -->
+      <!-- Slider 5 — Shadow Management -->
       <div class="slider-block">
         <div class="slider-top">
           <div class="slider-name-wrap">
@@ -905,6 +879,19 @@
         </div>
         <input type="range" id="shadowPct" min="0" max="80" value="35" oninput="updateSlider('shadowPct','shadowVal')">
         <div class="slider-hint">Harvard CEO Study, 2018 · PayScale 2026 ($189,022) · Indeed 2026 ($211,505) · Salary.com 2025 ($244,877) — $220K defensible midpoint used</div>
+      </div>
+
+      <!-- Slider 6 — Brilliant Jerk Immunity -->
+      <div class="slider-block">
+        <div class="slider-top">
+          <div class="slider-name-wrap">
+            <span class="slider-name">Brilliant Jerk Immunity</span>
+            <span class="slider-sublabel">High performers tolerated despite toxic behavior — damaging team culture and output</span>
+          </div>
+          <span class="slider-pct" id="lateFeeedbackVal">54%</span>
+        </div>
+        <input type="range" id="lateFeedbackPct" min="0" max="80" value="54" oninput="updateSlider('lateFeedbackPct','lateFeeedbackVal')">
+        <div class="slider-hint">Dylan Minor, Harvard Business School Toxic Workers Study, 2015 · Christine Porath, Georgetown University, 2022</div>
       </div>
 
       <div class="nav">
@@ -921,7 +908,7 @@
         <div class="debt-badge">Cultural Debt™</div>
         <div class="result-eyebrow">Estimated Annual Cultural Debt Cost</div>
         <div class="result-amount" id="totalCost">$0</div>
-        <div class="result-note">This is what accumulated cultural debt is costing your engineering organization every year — across management gaps, tolerated toxicity, voice suppression, punitive culture, broken feedback loops, and shadow management.</div>
+        <div class="result-note">This is what accumulated cultural debt is costing your engineering organization every year — across management gaps, psychological safety deficits, decision friction, cross-functional misalignment, shadow management, and tolerated toxicity.</div>
       </div>
 
       <!-- Severity bar -->
@@ -949,36 +936,33 @@
         </div>
         <div class="bc">
           <div class="bc-label">Psychological Safety Deficit</div>
-          <div class="bc-sublabel">Voice Suppression + Failure Punishment Reflex (Combined)</div>
-          <div class="bc-amount" id="challengerCost">—</div>
-          <div class="bc-desc">Combined cost of self-censorship and punitive failure culture — discounted 15% to eliminate shared psychological safety root cause overlap</div>
-        </div>
-        <div class="bc" style="display:none;">
-          <div class="bc-amount" id="vagueCost">—</div>
-        </div>
-        <div class="bc">
-          <div class="bc-label">Communication Lag & Feedback Debt</div>
-          <div class="bc-sublabel">Rework & Attrition Cost</div>
-          <div class="bc-amount" id="attritionCost">—</div>
-          <div class="bc-desc">Cost of chronic gaps in clarity, timeliness, and quality of feedback</div>
+          <div class="bc-sublabel">Voice Suppression + Failure Punishment Reflex</div>
+          <div class="bc-amount" id="psychSafetyCostDisplay">—</div>
+          <div class="bc-desc">Combined cost of self-censorship and punitive failure culture — 15% overlap discount applied</div>
         </div>
         <div class="bc">
           <div class="bc-label">Decision Velocity Debt</div>
           <div class="bc-sublabel">Organizational Speed & Delivery Cost</div>
           <div class="bc-amount" id="decisionCostDisplay">—</div>
-          <div class="bc-desc">Cost of slow, unclear, or avoided decisions — engineers waiting on approvals instead of building</div>
+          <div class="bc-desc">Cost of slow, unclear, or avoided decisions — engineers waiting instead of building</div>
+        </div>
+        <div class="bc">
+          <div class="bc-label">Cross-Functional Friction Debt</div>
+          <div class="bc-sublabel">Misalignment & Rework Cost</div>
+          <div class="bc-amount" id="crossFuncCostDisplay">—</div>
+          <div class="bc-desc">Cost of misalignment and communication breakdown between engineering and adjacent functions</div>
+        </div>
+        <div class="bc">
+          <div class="bc-label">Shadow Management</div>
+          <div class="bc-sublabel">Leadership Time & Strategy Cost</div>
+          <div class="bc-amount" id="shadowCostDisplay">—</div>
+          <div class="bc-desc">VP salary waste + 8% org productivity erosion + conflict cost attribution</div>
         </div>
         <div class="bc">
           <div class="bc-label">Brilliant Jerk Immunity</div>
           <div class="bc-sublabel">Tolerated Toxicity Cost</div>
           <div class="bc-amount" id="feedbackCostDisplay">—</div>
           <div class="bc-desc">Cost of retaining high performers whose toxic behavior damages team output and drives attrition</div>
-        </div>
-        <div class="bc">
-          <div class="bc-label">Shadow Management</div>
-          <div class="bc-sublabel">Leadership Time & Strategy Cost</div>
-          <div class="bc-amount" id="shadowCostDisplay">—</div>
-          <div class="bc-desc">VP salary waste + 8% org productivity erosion + conflict cost. Research: VP of Engineering median $250K (Salary.com 2025); total leader impact = 8.7× their compensation (HBS)</div>
         </div>
       </div>
 
@@ -1035,13 +1019,12 @@
     const employees       = parseFloat(document.getElementById('employees').value) || 0;
     const salary          = parseFloat(document.getElementById('salary').value) || 0;
     const replacePct      = parseFloat(document.getElementById('replacePct').value) || 150;
-    const incivilityPct   = parseFloat(document.getElementById('incivilityPct').value) / 100;  // Manager Capability Gap
-    const microtoxPct     = parseFloat(document.getElementById('microtoxPct').value) / 100;    // Voice Suppression (combined)
-    const challengerPct   = parseFloat(document.getElementById('challengerPct').value) / 100;  // Failure Punishment Reflex (combined)
-    const vaguePct        = parseFloat(document.getElementById('vagueFeedbackPct').value) / 100; // Communication Lag & Feedback Debt
-    const decisionPct     = parseFloat(document.getElementById('decisionPct').value) / 100;     // Decision Velocity Debt
-    const latePct         = parseFloat(document.getElementById('lateFeedbackPct').value) / 100;  // Brilliant Jerk Immunity
-    const shadowPct       = parseFloat(document.getElementById('shadowPct').value) / 100;        // Shadow Management
+    const incivilityPct  = parseFloat(document.getElementById('incivilityPct').value) / 100;  // Manager Capability Gap
+    const psychPct       = parseFloat(document.getElementById('psychPct').value) / 100;        // Psychological Safety Deficit
+    const decisionPct    = parseFloat(document.getElementById('decisionPct').value) / 100;     // Decision Velocity Debt
+    const crossFuncPct   = parseFloat(document.getElementById('crossFuncPct').value) / 100;    // Cross-Functional Friction Debt
+    const shadowPct      = parseFloat(document.getElementById('shadowPct').value) / 100;       // Shadow Management
+    const latePct        = parseFloat(document.getElementById('lateFeedbackPct').value) / 100; // Brilliant Jerk Immunity
 
     if (!employees || !salary) {
       alert('Please complete your organization inputs first.');
@@ -1051,61 +1034,48 @@
 
     const totalPayroll = employees * salary;
 
-    // 1. Manager Capability Gap
-    // Gallup 2025: 70% of engagement variance from manager; disengagement costs 34% of salary
-    const incivilCost = employees * incivilityPct * salary * 0.34;
+    // 1. Manager Capability Gap — Gallup 2025: 0.34 base + 4% Communication Lag absorption = 0.3536
+    const incivilCost = employees * incivilityPct * salary * 0.3536;
 
-    // 2 & 3. COMBINED: Psychological Safety Debt
-    // Voice Suppression + Failure Punishment Reflex share the same root cause (psychological unsafety)
-    // Running separately double-counts ~15% of shared variance
-    // Formula: (voiceCost + failureCost) × 0.85 eliminates the overlap
-    // Voice Suppression: Google Project Aristotle 2016 — 19% productivity loss
-    // Failure Punishment Reflex: McKinsey 2022 — 20% of payroll lost in punitive cultures
-    const rawVoiceCost    = employees * microtoxPct * salary * 0.19;
-    const rawFailureCost  = totalPayroll * challengerPct * 0.20;
+    // 2. Psychological Safety Deficit — 0.85 overlap discount applied
+    // Pre-discount multipliers boosted +2% to absorb Communication Lag undelivered honest feedback
+    // Voice: 0.19 × 1.02 = 0.1938 | Failure: 0.20 × 1.02 = 0.2040
+    const rawVoiceCost    = employees * psychPct * salary * 0.1938;
+    const rawFailureCost  = totalPayroll * psychPct * 0.2040;
     const psychSafetyCost = (rawVoiceCost + rawFailureCost) * 0.85;
 
-    // 4. Decision Velocity Debt — slider-based formula
-    // McKinsey 2020/2026: slow-decision orgs lose 15% of payroll value in friction
-    const decisionCost = totalPayroll * decisionPct * 0.15;
+    // 3. Decision Velocity Debt — 0.15 base + 2% Communication Lag absorption = 0.1530
+    const decisionCost = totalPayroll * decisionPct * 0.1530;
 
-    // 4. Communication Lag & Feedback Debt
-    // Work Institute 2020: 77% of turnover preventable; feedback lag is primary driver
-    // 20% of staff with chronic feedback gaps at attrition risk; replacement = 150% of salary
-    const atRiskStaff   = employees * vaguePct * 0.20;
-    const attritionCost = atRiskStaff * salary * (replacePct / 100);
+    // 4. Cross-Functional Friction Debt — 0.22 base + 2.5% Communication Lag absorption = 0.2255
+    const crossFuncCost = totalPayroll * crossFuncPct * 0.2255;
 
-    // 5. Brilliant Jerk Immunity
-    // HBS Dylan Minor 2015: toxic employee costs 2× a superstar hire
-    // Porath Georgetown 2022: de-energizing relationships 4–7× stronger negative impact
+    // 5. Shadow Management — 3-layer formula
+    const vpCompEstimate         = 220000;
+    const shadowDirectCost       = vpCompEstimate * shadowPct;
+    const shadowProductivityLoss = totalPayroll * 0.08;
+    const shadowConflictCost     = (employees / 160000000) * 359000000000 * shadowPct;
+    const shadowCost             = shadowDirectCost + (shadowProductivityLoss * shadowPct) + shadowConflictCost;
+
+    // 6. Brilliant Jerk Immunity — HBS Dylan Minor 2015: 22% output drag
     const feedbackCost = employees * latePct * salary * 0.22;
 
-    // 6. Shadow Management — three-layer research-based calculation
-    // VP of Engineering salary updated to $220,000
-    // Sources: PayScale 2026 ($189,022) · Indeed 2026 ($211,505) · Salary.com 2025 ($244,877)
-    // $220,000 is the defensible midpoint across current verified sources
-    const vpCompEstimate       = 220000;
-    const shadowDirectCost     = vpCompEstimate * shadowPct;
-    const shadowProductivityLoss = totalPayroll * 0.08;
-    const shadowConflictCost   = (employees / 160000000) * 359000000000 * shadowPct;
-    const shadowCost           = shadowDirectCost + (shadowProductivityLoss * shadowPct) + shadowConflictCost;
-
-    const total = incivilCost + psychSafetyCost + attritionCost + decisionCost + feedbackCost + shadowCost;
+    const total = incivilCost + psychSafetyCost + decisionCost + crossFuncCost + shadowCost + feedbackCost;
 
     document.getElementById('totalCost').textContent           = fmt(total);
     document.getElementById('incivilCost').textContent         = fmt(incivilCost);
-    document.getElementById('challengerCost').textContent      = fmt(psychSafetyCost);
-    document.getElementById('vagueCost').textContent           = fmt(psychSafetyCost);
-    document.getElementById('attritionCost').textContent       = fmt(attritionCost);
+    document.getElementById('psychSafetyCostDisplay').textContent = fmt(psychSafetyCost);
     document.getElementById('decisionCostDisplay').textContent = fmt(decisionCost);
-    document.getElementById('feedbackCostDisplay').textContent = fmt(feedbackCost);
+    document.getElementById('crossFuncCostDisplay').textContent = fmt(crossFuncCost);
     document.getElementById('shadowCostDisplay').textContent   = fmt(shadowCost);
-    window._feedbackCost = feedbackCost;
-    window._shadowCost   = shadowCost;
+    document.getElementById('feedbackCostDisplay').textContent = fmt(feedbackCost);
     window._psychSafety  = psychSafetyCost;
     window._decisionCost = decisionCost;
+    window._crossFunc    = crossFuncCost;
+    window._feedbackCost = feedbackCost;
+    window._shadowCost   = shadowCost;
 
-    const avgPct = (incivilityPct + microtoxPct + challengerPct + vaguePct + decisionPct + latePct + shadowPct) / 7;
+    const avgPct = (incivilityPct + psychPct + decisionPct + crossFuncPct + shadowPct + latePct) / 6;
     const severityPct = Math.min(avgPct * 200, 100);
     document.getElementById('severityFill').style.width = severityPct + '%';
 
@@ -1130,62 +1100,50 @@
     const employees      = document.getElementById('employees').value || '—';
     const salary         = document.getElementById('salary').value || '—';
     const incivilityPct  = document.getElementById('incivilityPct').value;
-    const microtoxPct    = document.getElementById('microtoxPct').value;
-    const challengerPct  = document.getElementById('challengerPct').value;
-    const vaguePct       = document.getElementById('vagueFeedbackPct').value;
+    const psychPctVal    = document.getElementById('psychPct').value;
     const decisionPctVal = document.getElementById('decisionPct').value;
-    const latePct        = document.getElementById('lateFeedbackPct').value;
+    const crossFuncPctVal= document.getElementById('crossFuncPct').value;
     const shadowPctVal   = document.getElementById('shadowPct').value;
-    const feedbackPct    = latePct;
+    const latePct        = document.getElementById('lateFeedbackPct').value;
 
     const total           = document.getElementById('totalCost').textContent.replace(/[$,]/g,'');
     const incivilCost     = document.getElementById('incivilCost').textContent.replace(/[$,]/g,'');
     const psychSafetyVal  = Math.round(window._psychSafety || 0);
     const decisionCostVal = Math.round(window._decisionCost || 0);
-    const attritionCost   = document.getElementById('attritionCost').textContent.replace(/[$,]/g,'');
+    const crossFuncVal    = Math.round(window._crossFunc || 0);
     const feedbackCostVal = Math.round(window._feedbackCost || 0);
     const shadowCostVal   = Math.round(window._shadowCost || 0);
 
-    const avgPct = (parseFloat(incivilityPct)+parseFloat(microtoxPct)+parseFloat(challengerPct)+parseFloat(vaguePct)+parseFloat(latePct))/500;
-    const params = `?total=${total}&ic=${incivilCost}&cc=${psychSafetyVal}&vc=${psychSafetyVal}&dc=${decisionCostVal}&ac=${attritionCost}&fc=${feedbackCostVal}&sc=${shadowCostVal}&ip=${incivilityPct}&cp=${challengerPct}&vp=${vaguePct}&dp=${decisionPctVal}&lp=${latePct}&fp=${feedbackPct}&sp=${shadowPctVal}&avg=${avgPct.toFixed(3)}`;
+    const avgPct = (parseFloat(incivilityPct)+parseFloat(psychPctVal)+parseFloat(decisionPctVal)+parseFloat(crossFuncPctVal)+parseFloat(shadowPctVal)+parseFloat(latePct))/600;
+    const params = `?total=${total}&ic=${incivilCost}&ps=${psychSafetyVal}&dc=${decisionCostVal}&cf=${crossFuncVal}&sc=${shadowCostVal}&fc=${feedbackCostVal}&avg=${avgPct.toFixed(3)}`;
 
-    const fullReportLink = 'https://Armers-ops.github.io/cultural-debt-calculator/cultural-debt-vp-summary.html' + params;
+    const fullReportLink = window.location.origin + window.location.pathname.replace('cultural-debt-calculator.html', 'cultural-debt-vp-summary.html') + params;
 
-    // Determine severity label
     const sev = avgPct < 0.20 ? 'Managed' : avgPct < 0.35 ? 'Moderate' : avgPct < 0.50 ? 'Severe' : 'Critical';
 
-    // Open VP summary in new tab
     window.open(fullReportLink, '_blank');
 
-    // TEMPLATE 1 — Client report email (clean, professional)
     emailjs.send('service_mefsi0n', 'fj6x3a8', {
       to_email:    email,
       report_link: fullReportLink,
       name:        'VP of Engineering'
-    }).then(() => {
-      console.log('Client email sent');
-    }).catch(err => console.error('Client email failed:', err));
+    }).then(() => { console.log('Client email sent'); }).catch(err => console.error('Client email failed:', err));
 
-    // TEMPLATE 2 — Internal alert to Armers (all scores, invisible to VP)
-    // Replace 'YOUR_INTERNAL_TEMPLATE_ID' with Template 2 ID from EmailJS once created
     emailjs.send('service_mefsi0n', 'YOUR_INTERNAL_TEMPLATE_ID', {
-      vp_email:          email,
-      submission_date:   new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'}),
-      total_cost:        '$' + parseInt(total).toLocaleString('en-US'),
-      severity:          sev,
-      cost_mcg:          '$' + parseInt(incivilCost).toLocaleString('en-US'),
-      cost_psd:          '$' + psychSafetyVal.toLocaleString('en-US'),
-      cost_clfd:         '$' + parseInt(attritionCost).toLocaleString('en-US'),
-      cost_dvd:          '$' + decisionCostVal.toLocaleString('en-US'),
-      cost_bji:          '$' + feedbackCostVal.toLocaleString('en-US'),
-      cost_sm:           '$' + shadowCostVal.toLocaleString('en-US'),
-      decision_pct:      decisionPctVal + '%',
-      headcount:         employees,
-      avg_salary:        '$' + parseInt(salary).toLocaleString('en-US'),
-      report_link:       fullReportLink
-    }).then(() => {
-      console.log('Internal alert sent');
-    }).catch(err => console.error('Internal alert failed:', err));
+      vp_email:        email,
+      submission_date: new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'}),
+      total_cost:      '$' + parseInt(total).toLocaleString('en-US'),
+      severity:        sev,
+      cost_mcg:        '$' + parseInt(incivilCost).toLocaleString('en-US'),
+      cost_psd:        '$' + psychSafetyVal.toLocaleString('en-US'),
+      cost_dvd:        '$' + decisionCostVal.toLocaleString('en-US'),
+      cost_cff:        '$' + crossFuncVal.toLocaleString('en-US'),
+      cost_sm:         '$' + shadowCostVal.toLocaleString('en-US'),
+      cost_bji:        '$' + feedbackCostVal.toLocaleString('en-US'),
+      headcount:       employees,
+      avg_salary:      '$' + parseInt(salary).toLocaleString('en-US'),
+      report_link:     fullReportLink
+    }).then(() => { console.log('Internal alert sent'); }).catch(err => console.error('Internal alert failed:', err));
 
     document.querySelector('.cta-card').innerHTML = `
       <div style="padding: 8px 0;">
@@ -1203,21 +1161,19 @@
 
   function resetCalc() {
     ['employees','salary','tenure','replacePct'].forEach(id => document.getElementById(id).value = '');
-    document.getElementById('incivilityPct').value    = 40;
-    document.getElementById('microtoxPct').value      = 42;
-    document.getElementById('challengerPct').value    = 38;
-    document.getElementById('vagueFeedbackPct').value = 45;
-    document.getElementById('decisionPct').value      = 38;
-    document.getElementById('lateFeedbackPct').value  = 54;
-    document.getElementById('shadowPct').value        = 35;
+    document.getElementById('incivilityPct').value = 40;
+    document.getElementById('psychPct').value       = 40;
+    document.getElementById('decisionPct').value    = 38;
+    document.getElementById('crossFuncPct').value   = 42;
+    document.getElementById('shadowPct').value      = 35;
+    document.getElementById('lateFeedbackPct').value = 54;
     [
       ['incivilityVal','40%'],
-      ['microtoxVal','42%'],
-      ['challengerVal','38%'],
-      ['vagueFeedbackVal','45%'],
+      ['psychVal','40%'],
       ['decisionVal','38%'],
-      ['lateFeeedbackVal','54%'],
-      ['shadowVal','35%']
+      ['crossFuncVal','42%'],
+      ['shadowVal','35%'],
+      ['lateFeeedbackVal','54%']
     ].forEach(([id,v]) => document.getElementById(id) && (document.getElementById(id).textContent = v));
     document.querySelectorAll('.team-btn').forEach(b => b.classList.remove('selected'));
     goTo(1);
