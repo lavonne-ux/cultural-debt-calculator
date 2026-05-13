@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Debt Calculator — Culture Shift Consulting Group</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>emailjs.init('kTIzJ4hpEYE4LWi-w');</script>
+<style>
+  :root {
+    --navy:      #091E42;
+    --navy-mid:  #0D2B6E;
+    --blue:      #1A5CB8;
+    --teal:      #00B4A6;
+    --teal-light:#5BC8C0;
+    --aqua-grad: linear-gradient(135deg, #091E42 0%, #0D2B6E 25%, #1A5CB8 55%, #00B4A6 80%, #5BC8C0 100%);
+    --white:     #ffffff;
+    --off-white: #f4fafa;
+    --muted:     #5a7a8a;
+    --border:    #d0e8ec;
+    --shadow:    0 4px 20px rgba(15,31,61,0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--off-white); font-family: 'DM Sans', sans-serif; color: var(--navy); min-height: 100vh; }
+
+  .hero-bar {
+    background: var(--aqua-grad);
+    padding: 40px 24px 40px;
+    text-align: center;
+  }
+
+  .hero-bar::after { display: none; }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 10px;
+    letter-spacing: 0.04em;
+  }
+
+  .hero-title-sub {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 4vw, 32px);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 14px;
+    font-style: italic;
+  }
+
+  .hero-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.85);
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .wrapper {
+    max-width: 720px;
+    margin: -20px auto 0;
+    padding: 0 20px 60px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .card {
+    background: var(--white);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    padding: 32px 28px;
+    margin-bottom: 16px;
+  }
+
+  .steps {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+
+  .step-pill {
+    flex: 1;
+    height: 6px;
+    border-radius: 3px;
+    background: #e0eef0;
+    transition: background 0.4s;
+  }
+
+  .step-pill.active { background: var(--teal); }
+  .step-pill.done   { background: var(--navy-mid); }
+
+  .step-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 6px;
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+
+  .card-desc {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 24px;
+    line-height: 1.6;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  @media (max-width: 500px) { .grid-2 { grid-template-columns: 1fr; } }
+
+  .input-group { margin-bottom: 18px; }
+
+  label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  label sub {
+    font-size: 10px;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--teal);
+    margin-left: 4px;
+  }
+
+  .input-wrap { position: relative; }
+  .prefix {
+    position: absolute;
+    left: 14px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--navy-mid);
+    font-weight: 600;
+    font-size: 15px;
+    pointer-events: none;
+  }
+
+  input[type="number"], input[type="text"] {
+    width: 100%;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    color: var(--navy);
+    background: var(--off-white);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    -moz-appearance: textfield;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+  input[type="number"]:focus, input[type="text"]:focus {
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(0,180,166,0.15);
+    background: #fff;
+  }
+
+  .has-prefix input { padding-left: 32px; }
+
+  /* J-Curve questions */
+  .jcurve-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+
+  .jcurve-sub {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+
+  .jcurve-score {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--teal);
+    text-align: center;
+    margin-bottom: 4px;
+  }
+
+  .jcurve-score-label {
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    margin-bottom: 16px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .q-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .q-row:last-child { border-bottom: none; }
+
+  .q-text {
+    flex: 1;
+    font-size: 13px;
+    color: var(--navy);
+    line-height: 1.5;
+  }
+
+  .q-toggle {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .q-btn {
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1.5px solid var(--border);
+    background: var(--off-white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .q-btn.yes.selected { background: var(--teal); border-color: var(--teal); color: white; }
+  .q-btn.no.selected  { background: #e05555;     border-color: #e05555;     color: white; }
+
+  /* Slider */
+  .slider-block {
+    background: var(--off-white);
+    border: 1.5px solid #1A5CB8;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-bottom: 14px;
+  }
+
+  .slider-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 4px;
+    gap: 12px;
+  }
+
+  .slider-name { font-size: 13px; font-weight: 600; color: var(--navy); display: block; margin-bottom: 2px; }
+  .slider-sublabel { font-size: 11px; color: var(--muted); font-style: italic; }
+  .slider-pct { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: #0D2B6E; white-space: nowrap; }
+
+  input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 4px;
+    background: #cde8ec;
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+    margin: 10px 0 6px;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: #0D2B6E;
+    box-shadow: 0 2px 8px rgba(13,43,110,0.4);
+    cursor: pointer;
+    transition: transform 0.15s;
+  }
+
+  input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+  .slider-hint { font-size: 11px; color: #0D2B6E; font-style: italic; opacity: 0.75; }
+
+  /* Section */
+  .section { display: none; animation: fadeUp 0.35s ease; }
+  .section.active { display: block; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Nav */
+  .nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; }
+
+  .btn {
+    padding: 13px 28px;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+  }
+
+  .btn-primary {
+    background: var(--aqua-grad);
+    color: white;
+    flex: 1;
+    max-width: 280px;
+    margin-left: auto;
+    box-shadow: 0 4px 14px rgba(0,180,166,0.3);
+  }
+
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(0,180,166,0.4); }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--muted);
+    border: 1.5px solid var(--border);
+  }
+
+  .btn-ghost:hover { border-color: var(--teal); color: var(--teal); }
+
+  /* Results */
+  .result-hero {
+    background: var(--aqua-grad);
+    border-radius: 14px;
+    padding: 36px 24px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .result-eyebrow { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.75); margin-bottom: 10px; }
+  .result-amount  { font-family: 'Playfair Display', serif; font-size: clamp(44px, 10vw, 68px); font-weight: 700; color: white; line-height: 1; margin-bottom: 12px; }
+  .result-note    { font-size: 13px; color: rgba(255,255,255,0.8); max-width: 400px; margin: 0 auto; line-height: 1.6; }
+
+  .bc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+  @media (max-width: 500px) { .bc-grid { grid-template-columns: 1fr; } }
+
+  .bc {
+    background: var(--off-white);
+    border: 1.5px solid #1A5CB8;
+    border-top: 4px solid #0D2B6E;
+    border-radius: 10px;
+    padding: 16px 14px;
+  }
+
+  .bc-label  { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .bc-amount { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--navy-mid); margin-bottom: 4px; }
+  .bc-desc   { font-size: 11px; color: var(--muted); line-height: 1.5; }
+
+  .cta-card {
+    background: var(--aqua-grad);
+    border-radius: 14px;
+    padding: 24px;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  .cta-card h3 { font-family: 'Playfair Display', serif; font-size: 18px; color: white; margin-bottom: 8px; }
+  .cta-card p  { font-size: 13px; color: rgba(255,255,255,0.75); margin-bottom: 16px; line-height: 1.6; }
+
+  .email-row { display: flex; gap: 10px; max-width: 420px; margin: 0 auto; }
+  .email-row input { flex: 1; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25); color: white; padding: 12px 14px; font-size: 14px; border-radius: 8px; }
+  .email-row input::placeholder { color: rgba(255,255,255,0.5); }
+  .email-row input:focus { border-color: white; outline: none; }
+  .email-row .btn-primary { max-width: none; margin-left: 0; flex-shrink: 0; }
+
+  .disclaimer { font-size: 11px; color: var(--muted); text-align: center; margin-top: 12px; opacity: 0.6; line-height: 1.6; }
+
+  .back-link {
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    margin-top: 16px;
+  }
+</style>
+</head>
+<body>
+
+<div class="hero-bar">
+  <img src="https://raw.githubusercontent.com/Armers-ops/cultural-debt-calculator/main/cscg-logo-white-text.png"
+       alt="Culture Shift Consulting Group"
+       style="height:clamp(120px,22vw,200px); width:auto; max-width:90%; display:block; margin:0 auto 24px;"
+       onerror="this.style.display='none'">
+  <div class="hero-title">AI DEBT CALCULATOR</div>
+  <div class="hero-title-sub">What Is AI Friction Costing Your Organization?</div>
+  <p class="hero-sub">Built for VPs of R&amp;D and Engineering. Quantify the structural cost of AI adoption friction — in under 2 minutes.</p>
+</div>
+
+<div class="wrapper">
+  <div class="card">
+
+    <div class="steps">
+      <div class="step-pill active" id="pill1"></div>
+      <div class="step-pill" id="pill2"></div>
+      <div class="step-pill" id="pill3"></div>
+    </div>
+
+    <!-- SECTION 1: Org Inputs -->
+    <div class="section active" id="section1">
+      <div class="step-label">Step 1 of 2 — Your AI Investment</div>
+      <div class="card-title">Engineering & AI Budget</div>
+      <p class="card-desc">Enter your engineering workforce and AI initiative investment. Pre-filled from your Cultural Debt assessment where available.</p>
+
+      <div class="grid-2">
+        <div class="input-group">
+          <label>Engineering Headcount <sub>total engineers</sub></label>
+          <div class="input-wrap">
+            <input type="number" id="employees" placeholder="e.g. 500" min="1"/>
+          </div>
+        </div>
+        <div class="input-group">
+          <label>Fully-Loaded Cost Per Engineer <sub>salary + benefits + overhead</sub></label>
+          <div class="input-wrap has-prefix">
+            <span class="prefix">$</span>
+            <input type="number" id="engCost" placeholder="e.g. 250,000" min="1"/>
+          </div>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label>Annual AI Initiative Spend <sub>platforms, tooling, pilots, training</sub></label>
+        <div class="input-wrap has-prefix">
+          <span class="prefix">$</span>
+          <input type="number" id="aiBudget" placeholder="e.g. 10,000,000" min="0"/>
+        </div>
+      </div>
+
+      <div class="nav">
+        <button class="btn btn-primary" onclick="goTo(2)">Next: J-Curve Diagnostic →</button>
+      </div>
+    </div>
+
+    <!-- SECTION 2: J-Curve Diagnostic -->
+    <div class="section" id="section2">
+      <div class="step-label">Step 2 of 2 — J-Curve Recovery Diagnostic</div>
+      <div class="card-title">AI Organizational Readiness</div>
+      <p class="card-desc">Score your organization on Brynjolfsson's complementary investment framework. Each "Yes" reduces your structural AI drag.</p>
+
+      <div class="jcurve-score" id="jScore">0</div>
+      <div class="jcurve-score-label">J-Curve Score (0 = no readiness · 5 = full readiness)</div>
+
+      <div class="q-row">
+        <div class="q-text">Does your organization have a documented, actively used AI evaluation framework?</div>
+        <div class="q-toggle">
+          <button class="q-btn yes" onclick="setQ(this, 'q1', 1)">Yes</button>
+          <button class="q-btn no selected" onclick="setQ(this, 'q1', 0)">No</button>
+        </div>
+      </div>
+      <div class="q-row">
+        <div class="q-text">Has manager training been updated for AI-era leadership expectations?</div>
+        <div class="q-toggle">
+          <button class="q-btn yes" onclick="setQ(this, 'q2', 1)">Yes</button>
+          <button class="q-btn no selected" onclick="setQ(this, 'q2', 0)">No</button>
+        </div>
+      </div>
+      <div class="q-row">
+        <div class="q-text">Have performance and promotion criteria been revised to reflect AI use and contribution?</div>
+        <div class="q-toggle">
+          <button class="q-btn yes" onclick="setQ(this, 'q3', 1)">Yes</button>
+          <button class="q-btn no selected" onclick="setQ(this, 'q3', 0)">No</button>
+        </div>
+      </div>
+      <div class="q-row">
+        <div class="q-text">Have workflows been redesigned around AI — not just AI inserted into legacy processes?</div>
+        <div class="q-toggle">
+          <button class="q-btn yes" onclick="setQ(this, 'q4', 1)">Yes</button>
+          <button class="q-btn no selected" onclick="setQ(this, 'q4', 0)">No</button>
+        </div>
+      </div>
+      <div class="q-row">
+        <div class="q-text">Does your organization have documented cultural norms around AI use, validation, and trust?</div>
+        <div class="q-toggle">
+          <button class="q-btn yes" onclick="setQ(this, 'q5', 1)">Yes</button>
+          <button class="q-btn no selected" onclick="setQ(this, 'q5', 0)">No</button>
+        </div>
+      </div>
+
+      <div style="margin-top:20px;">
+        <div class="slider-block">
+          <div class="slider-top">
+            <div>
+              <span class="slider-name">Failed AI Pilot Waste Rate</span>
+              <span class="slider-sublabel">% of AI budget that produces no recoverable value</span>
+            </div>
+            <span class="slider-pct" id="pilotVal">30%</span>
+          </div>
+          <input type="range" id="pilotPct" min="0" max="60" value="30" oninput="updateSlider('pilotPct','pilotVal')">
+          <div class="slider-hint">RAND Corporation / Gartner 2026: 30–40% of enterprise AI spend produces no recoverable value</div>
+        </div>
+      </div>
+
+      <div class="nav">
+        <button class="btn btn-ghost" onclick="goTo(1)">← Back</button>
+        <button class="btn btn-primary" onclick="calculate()">Calculate AI Debt →</button>
+      </div>
+    </div>
+
+    <!-- SECTION 3: Results -->
+    <div class="section" id="section3">
+      <div class="step-label">Your AI Debt Report</div>
+
+      <div class="result-hero">
+        <div class="result-eyebrow">Estimated Annual AI Debt Cost</div>
+        <div class="result-amount" id="totalAIDebt">—</div>
+        <div class="result-note">This is what AI adoption friction is costing your engineering organization annually — structural drag from insufficient organizational readiness plus failed pilot waste.</div>
+      </div>
+
+      <div class="bc-grid">
+        <div class="bc">
+          <div class="bc-label">Structural AI Drag</div>
+          <div class="bc-amount" id="structuralCost">—</div>
+          <div class="bc-desc">Cost of engineers operating below AI productivity potential due to organizational gaps — J-Curve adjusted</div>
+        </div>
+        <div class="bc">
+          <div class="bc-label">Failed Pilot Waste</div>
+          <div class="bc-amount" id="pilotWasteCost">—</div>
+          <div class="bc-desc">Portion of AI initiative budget that produces no recoverable organizational value</div>
+        </div>
+      </div>
+
+      <div style="background:var(--off-white); border:1.5px solid #1A5CB8; border-radius:10px; padding:16px 18px; margin-bottom:20px;">
+        <div style="font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-bottom:6px;">J-Curve Recovery Score</div>
+        <div style="font-family:'Playfair Display',serif; font-size:28px; font-weight:700; color:#0D2B6E;" id="jScoreResult">0 / 5</div>
+        <div style="font-size:12px; color:var(--muted); margin-top:4px;" id="jScoreLabel">Org stuck at the bottom of the J-Curve — 85% of drag is structural</div>
+        <div style="font-size:10px; color:#0D2B6E; font-style:italic; margin-top:8px;">Brynjolfsson Complementary Investments Framework, MIT/Stanford · RAND Corporation / Gartner 2026</div>
+      </div>
+
+      <div class="cta-card">
+        <h3>Get Your Full AI Debt Report</h3>
+        <p>Receive a personalized breakdown with your J-Curve score, structural drag analysis, and recommended organizational investments — delivered to your inbox.</p>
+        <div class="email-row">
+          <input type="text" id="emailInput" placeholder="Your work email"/>
+          <button class="btn btn-primary" onclick="sendReport()">Send My Report</button>
+        </div>
+      </div>
+
+      <div class="disclaimer">
+        Methodology based on Brynjolfsson Complementary Investments Framework (MIT/Stanford) and RAND/Gartner enterprise AI adoption research.<br>
+        Culture Shift Consulting Group · cultureshiftconsultinggroup.com
+      </div>
+      <span class="back-link" onclick="resetCalc()">← Start over</span>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // Pre-fill from URL params passed by VP Summary
+  const urlP = new URLSearchParams(window.location.search);
+  if (urlP.get('employees')) document.getElementById('employees').value = urlP.get('employees');
+  if (urlP.get('salary'))    document.getElementById('engCost').value   = urlP.get('salary');
+
+  // J-Curve state
+  const qVals = { q1: 0, q2: 0, q3: 0, q4: 0, q5: 0 };
+
+  function setQ(btn, q, val) {
+    const row = btn.closest('.q-toggle');
+    row.querySelectorAll('.q-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    qVals[q] = val;
+    const score = Object.values(qVals).reduce((a, b) => a + b, 0);
+    document.getElementById('jScore').textContent = score;
+  }
+
+  function updateSlider(sid, vid) {
+    document.getElementById(vid).textContent = document.getElementById(sid).value + '%';
+  }
+
+  function fmt(n) {
+    if (!n || isNaN(n)) return '—';
+    return '$' + Math.round(n).toLocaleString('en-US');
+  }
+
+  function goTo(n) {
+    if (n === 2) {
+      const emp = parseFloat(document.getElementById('employees').value);
+      const cost = parseFloat(document.getElementById('engCost').value);
+      if (!emp || !cost) { alert('Please enter Engineering Headcount and Fully-Loaded Cost Per Engineer to continue.'); return; }
+    }
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.getElementById('section' + n).classList.add('active');
+    ['pill1','pill2','pill3'].forEach((id, i) => {
+      const p = document.getElementById(id);
+      p.classList.remove('active','done');
+      if (i + 1 < n) p.classList.add('done');
+      else if (i + 1 === n) p.classList.add('active');
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function calculate() {
+    const employees  = parseFloat(document.getElementById('employees').value) || 0;
+    const engCost    = parseFloat(document.getElementById('engCost').value) || 0;
+    const aiBudget   = parseFloat(document.getElementById('aiBudget').value) || 0;
+    const pilotPct   = parseFloat(document.getElementById('pilotPct').value) / 100;
+    const jScore     = Object.values(qVals).reduce((a, b) => a + b, 0);
+
+    if (!employees || !engCost) { alert('Please complete your engineering inputs first.'); goTo(1); return; }
+
+    // Brynjolfsson J-Curve formula
+    // Structural % = linear interpolation between 85% (score 0) and 30% (score 5)
+    const structuralPct = 0.85 - (jScore / 5) * (0.85 - 0.30);
+
+    // Gross AI debt drag per engineer: $50,000 (METR/HackerRank/BCG-calibrated per Armers' spreadsheet)
+    const grossDragPerEng = 50000;
+
+    // Structural drag for whole org
+    const structuralDragPerEng = grossDragPerEng * structuralPct;
+    const structuralCost       = employees * structuralDragPerEng;
+
+    // Failed pilot waste
+    const pilotWasteCost = aiBudget * pilotPct;
+
+    const total = structuralCost + pilotWasteCost;
+
+    document.getElementById('totalAIDebt').textContent  = fmt(total);
+    document.getElementById('structuralCost').textContent = fmt(structuralCost);
+    document.getElementById('pilotWasteCost').textContent = fmt(pilotWasteCost);
+    document.getElementById('jScoreResult').textContent  = jScore + ' / 5';
+
+    const labels = [
+      'Org stuck at the bottom of the J-Curve — 85% of drag is structural',
+      'Minimal readiness — 74% of drag remains structural',
+      'Some progress — 63% of drag remains structural',
+      'Halfway there — 52% of drag remains structural',
+      'Strong readiness — 41% of drag remains structural',
+      'Full complementary investment — 30% of drag is structural'
+    ];
+    document.getElementById('jScoreLabel').textContent = labels[jScore];
+
+    // Store for email
+    window._aiResults = { total, structuralCost, pilotWasteCost, jScore, structuralPct, employees, engCost, aiBudget };
+
+    goTo(3);
+  }
+
+  function sendReport() {
+    const email = document.getElementById('emailInput').value.trim();
+    if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
+
+    const r = window._aiResults || {};
+    const reportParams = `?total=${Math.round(r.total || 0)}&sc=${Math.round(r.structuralCost || 0)}&pw=${Math.round(r.pilotWasteCost || 0)}&js=${r.jScore || 0}&sp=${(r.structuralPct || 0).toFixed(2)}&emp=${r.employees || 0}&cost=${r.engCost || 0}&budget=${r.aiBudget || 0}`;
+
+    emailjs.send('service_mefsi0n', 'fj6x3a8', {
+      to_email:    email,
+      report_link: window.location.origin + window.location.pathname.replace('ai-debt-calculator.html', 'ai-debt-vp-summary.html') + reportParams,
+      name:        'VP of Engineering'
+    }).then(() => {
+      console.log('Email sent');
+    }).catch(e => {
+      console.error('Email failed:', e);
+    });
+
+    // Send Armers internal notification via BCC (handled by EmailJS template BCC field)
+    document.querySelector('.cta-card').innerHTML = `
+      <p style="color:white;font-size:18px;font-family:'Playfair Display',serif;font-weight:600;margin-bottom:8px;">Your AI Debt Report Is Ready ✓</p>
+      <p style="color:rgba(255,255,255,0.8);font-size:13px;">A copy is on its way to <strong style="color:white;">${email}</strong>.</p>
+    `;
+  }
+
+  function resetCalc() {
+    ['employees','engCost','aiBudget'].forEach(id => document.getElementById(id).value = '');
+    Object.keys(qVals).forEach(q => qVals[q] = 0);
+    document.querySelectorAll('.q-btn').forEach(b => {
+      b.classList.remove('selected');
+      if (b.classList.contains('no')) b.classList.add('selected');
+    });
+    document.getElementById('jScore').textContent = '0';
+    document.getElementById('pilotPct').value = 30;
+    document.getElementById('pilotVal').textContent = '30%';
+    goTo(1);
+  }
+</script>
+</body>
+</html>

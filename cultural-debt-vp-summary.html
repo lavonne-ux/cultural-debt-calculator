@@ -29,19 +29,10 @@
 
   .header {
     background: var(--aqua-grad);
-    padding: 32px 40px 52px;
-    position: relative;
-    overflow: hidden;
+    padding: 32px 40px 32px;
   }
 
-  .header::after {
-    content: '';
-    position: absolute;
-    bottom: -2px; left: 0; right: 0;
-    height: 48px;
-    background: var(--off-white);
-    clip-path: ellipse(55% 100% at 50% 100%);
-  }
+  .header::after { display: none; }
 
   .logo-row {
     display: flex;
@@ -168,18 +159,14 @@
   .sev-desc { font-size: 10px; color: rgba(255,255,255,0.65); }
 
   /* Cost table */
+  /* Cost driver cards — each driver is its own card */
   .cost-table {
-    background: var(--white);
-    border: 2px solid #0D2B6E;
-    border-radius: 12px;
-    overflow: hidden;
     margin-bottom: 14px;
-    box-shadow: var(--shadow);
   }
 
   .cost-table-header {
     display: grid;
-    grid-template-columns: 1fr 80px 140px;
+    grid-template-columns: 1fr 140px;
     padding: 10px 20px;
     background: linear-gradient(135deg, #091E42 0%, #0D2B6E 25%, #1A5CB8 55%, #00B4A6 80%, #5BC8C0 100%);
     font-size: 10px;
@@ -188,31 +175,73 @@
     text-transform: uppercase;
     color: rgba(255,255,255,0.95);
     gap: 8px;
+    border-radius: 10px 10px 0 0;
+    margin-bottom: 8px;
   }
 
-  .cost-table-header span:nth-child(2),
-  .cost-table-header span:nth-child(3) { text-align: right; }
+  .driver-card {
+    background: var(--white);
+    border: 1.5px solid #1A5CB8;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 8px;
+    box-shadow: var(--shadow);
+  }
 
   .cost-row {
     display: grid;
-    grid-template-columns: 1fr 80px 140px;
+    grid-template-columns: 1fr 140px;
     gap: 8px;
     padding: 13px 20px;
-    border-bottom: 1px solid var(--border);
     align-items: center;
+    background: var(--white);
   }
-
-  .cost-row:last-child { border-bottom: none; }
-  .cost-row:nth-child(even) { background: #fafefe; }
 
   .cost-driver { font-size: 13px; font-weight: 600; color: var(--navy); }
   .cost-driver-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
 
-  .cost-pct {
-    font-size: 13px;
-    font-weight: 500;
+  /* Citation boxes are now removed from inside driver cards */
+  .cite-box { display: none; }
+
+  /* 3 grouped citation boxes below cost table */
+  .cite-group-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
     color: var(--muted);
-    text-align: right;
+    margin-bottom: 8px;
+  }
+
+  .cite-group {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  @media (max-width: 560px) { .cite-group { grid-template-columns: 1fr; } }
+
+  .cite-box-group {
+    background: rgba(26,92,184,0.04);
+    border: 1.5px solid #1A5CB8;
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+
+  .cite-group-driver {
+    font-size: 10px;
+    font-weight: 700;
+    color: #0D2B6E;
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+
+  .cite-group-sources {
+    font-size: 10px;
+    color: var(--muted);
+    font-style: italic;
+    line-height: 1.6;
   }
 
   .cost-amount {
@@ -223,42 +252,11 @@
     text-align: right;
   }
 
-  /* Stats */
-  .impact-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    margin-bottom: 14px;
-  }
-
-  @media (max-width: 480px) { .impact-row { grid-template-columns: 1fr 1fr; } }
-
-  .impact-card {
-    background: var(--white);
-    border: 1.5px solid var(--border);
-    border-radius: 10px;
-    padding: 14px 12px;
-    text-align: center;
-    box-shadow: var(--shadow);
-  }
-
-  .impact-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--teal-dark);
-    line-height: 1;
-    margin-bottom: 4px;
-  }
-
-  .impact-label { font-size: 11px; color: var(--muted); line-height: 1.4; }
-
-  /* Next step */
+  /* Next step — consistent with all other cards */
   .next-step {
     background: var(--white);
-    border: 1.5px solid var(--border);
-    border-left: 4px solid var(--teal);
-    border-radius: 0 10px 10px 0;
+    border: 1.5px solid #1A5CB8;
+    border-radius: 10px;
     padding: 16px 20px;
     margin-bottom: 14px;
     box-shadow: var(--shadow);
@@ -318,9 +316,9 @@
 
 <div class="header">
   <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:12px;">
-    <img src="https://raw.githubusercontent.com/lavonne-ux/cultural-debt-calculator/main/cscg-logo-transparent.png"
+    <img src="https://raw.githubusercontent.com/Armers-ops/cultural-debt-calculator/main/cscg-logo-white-text.png"
          alt="Culture Shift Consulting Group"
-         style="height:80px; width:auto; display:block;"
+         style="height:clamp(100px,18vw,160px); width:auto; max-width:70%; display:block;"
          onerror="this.style.display='none'">
     <div class="report-date" id="reportDate"></div>
   </div>
@@ -355,77 +353,124 @@
   <div class="cost-table">
     <div class="cost-table-header">
       <span>Cost Driver</span>
-      <span>Input %</span>
-      <span>Est. Annual Cost</span>
+      <span style="text-align:right">Est. Annual Cost</span>
     </div>
-    <div class="cost-row">
-      <div>
-        <div class="cost-driver">Manager Capability Gap</div>
-        <div class="cost-driver-sub">Leadership & Retention Cost across engineering teams</div>
+
+    <div class="driver-card">
+      <div class="cost-row">
+        <div>
+          <div class="cost-driver">Manager Capability Gap</div>
+          <div class="cost-driver-sub">Leadership & Retention Cost</div>
+        </div>
+        <div class="cost-amount" id="vpIncivilCost">—</div>
       </div>
-      <div class="cost-pct" id="vpIncivilPct">—</div>
-      <div class="cost-amount" id="vpIncivilCost">—</div>
     </div>
-    <div class="cost-row">
-      <div>
-        <div class="cost-driver">Voice Suppression</div>
-        <div class="cost-driver-sub">Innovation & Safety Cost — unreported bugs, withheld ideas</div>
+
+    <div class="driver-card">
+      <div class="cost-row">
+        <div>
+          <div class="cost-driver">Psychological Safety Deficit</div>
+          <div class="cost-driver-sub">Voice Suppression + Failure Punishment Reflex — Combined</div>
+        </div>
+        <div class="cost-amount" id="vpChallengerCost">—</div>
       </div>
-      <div class="cost-pct" id="vpChallengerPct">—</div>
-      <div class="cost-amount" id="vpChallengerCost">—</div>
     </div>
-    <div class="cost-row">
-      <div>
-        <div class="cost-driver">Failure Punishment Reflex</div>
-        <div class="cost-driver-sub">Velocity & Innovation Cost — punitive failure culture</div>
+
+    <div class="driver-card">
+      <div class="cost-row">
+        <div>
+          <div class="cost-driver">Communication Lag & Feedback Debt</div>
+          <div class="cost-driver-sub">Rework & Attrition Cost</div>
+        </div>
+        <div class="cost-amount" id="vpAttritionCost">—</div>
       </div>
-      <div class="cost-pct" id="vpVaguePct">—</div>
-      <div class="cost-amount" id="vpVagueCost">—</div>
     </div>
-    <div class="cost-row">
-      <div>
-        <div class="cost-driver">Communication Lag & Feedback Debt</div>
-        <div class="cost-driver-sub">Rework & Attrition Cost — chronic feedback delays and gaps</div>
+
+    <div class="driver-card">
+      <div class="cost-row">
+        <div>
+          <div class="cost-driver">Decision Velocity Debt</div>
+          <div class="cost-driver-sub">Organizational Speed & Delivery Cost</div>
+        </div>
+        <div class="cost-amount" id="vpDecisionCost">—</div>
       </div>
-      <div class="cost-pct" id="vpLatePct">—</div>
-      <div class="cost-amount" id="vpAttritionCost">—</div>
     </div>
-    <div class="cost-row">
-      <div>
-        <div class="cost-driver">Brilliant Jerk Immunity</div>
-        <div class="cost-driver-sub">Tolerated Toxicity Cost — high performer cultural damage</div>
+
+    <div class="driver-card">
+      <div class="cost-row">
+        <div>
+          <div class="cost-driver">Brilliant Jerk Immunity</div>
+          <div class="cost-driver-sub">Tolerated Toxicity Cost</div>
+        </div>
+        <div class="cost-amount" id="vpFeedbackCost">—</div>
       </div>
-      <div class="cost-pct" id="vpFeedbackPct">—</div>
-      <div class="cost-amount" id="vpFeedbackCost">—</div>
     </div>
-    <div class="cost-row">
-      <div>
-        <div class="cost-driver">Shadow Management</div>
-        <div class="cost-driver-sub">Leadership Time & Strategy Cost — $90K–$144K direct VP salary waste + org productivity erosion</div>
+
+    <div class="driver-card">
+      <div class="cost-row">
+        <div>
+          <div class="cost-driver">Shadow Management</div>
+          <div class="cost-driver-sub">Leadership Time & Strategy Cost</div>
+        </div>
+        <div class="cost-amount" id="vpShadowCost">—</div>
       </div>
-      <div class="cost-pct" id="vpShadowPct">—</div>
-      <div class="cost-amount" id="vpShadowCost">—</div>
+    </div>
+
+  </div>
+
+  <!-- 3 Citation Boxes — Option A: 2 drivers per box -->
+  <div class="cite-group-label">Research Sources</div>
+  <div class="cite-group">
+    <div class="cite-box-group">
+      <div class="cite-group-driver">Manager Capability Gap · Psychological Safety Deficit</div>
+      <div class="cite-group-sources">Gallup State of the American Manager, 2015 · Gallup State of the Global Workplace, 2025 · Google Project Aristotle, 2016 · McKinsey Global Institute, 2022</div>
+    </div>
+    <div class="cite-box-group">
+      <div class="cite-group-driver">Communication Lag & Feedback Debt · Decision Velocity Debt</div>
+      <div class="cite-group-sources">Work Institute Retention Report, 2020 · Kim Scott, Radical Candor (2nd ed.), 2022 · Bain & Company RAPID Decision Framework · McKinsey Global Tech Agenda, 2026</div>
+    </div>
+    <div class="cite-box-group">
+      <div class="cite-group-driver">Brilliant Jerk Immunity · Shadow Management</div>
+      <div class="cite-group-sources">Dylan Minor, Harvard Business School Toxic Workers Study, 2015 · Christine Porath, Georgetown University, 2022 · Harvard CEO Study, 2018 · PayScale / Indeed / Salary.com — VP of Engineering $220K midpoint</div>
     </div>
   </div>
 
-  <div class="impact-row">
-    <div class="impact-card">
-      <div class="impact-num">8.7×</div>
-      <div class="impact-label">total cost of a difficult leader relative to their annual compensation</div>
-    </div>
-    <div class="impact-card">
-      <div class="impact-num">7–9%</div>
-      <div class="impact-label">productivity decrease across entire org from ineffective leadership</div>
-    </div>
-    <div class="impact-card">
-      <div class="impact-num">$359B</div>
-      <div class="impact-label">lost annually to unresolved workplace conflict in U.S. organizations</div>
-    </div>
-  </div>
 
   <div class="next-step">
-    <div class="next-label">Recommended Next Best Step</div>
-    <div class="next-text">Schedule a Cultural Debt Consultation where we will help you identify your highest-cost drivers, some of the team-specific blocks, and explore the best next step to address this leakage. We can help organizations recover 30–40% of their cultural debt cost within two quarters of implementation.</div>
+    <div class="next-label">Recommended Next Step</div>
+    <div class="next-text">Schedule a Cultural Debt Consultation to identify your highest-cost drivers, team-specific blocks, and the best next step to address this leakage.</div>
+  </div>
+
+  <!-- AI Debt CTA -->
+  <div style="
+    background: var(--off-white);
+    border: 1.5px solid #1A5CB8;
+    border-radius: 10px;
+    padding: 18px 24px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  ">
+    <div>
+      <div style="font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#0D2B6E; margin-bottom:4px;">Add Your AI Investment Cost</div>
+      <div style="font-size:13px; color:var(--muted); line-height:1.5;">Your Cultural Debt total does not include the cost of AI Adoption Friction. Calculate your AI Debt to see the full organizational cost picture.</div>
+    </div>
+    <a id="aiDebtLink" href="https://Armers-ops.github.io/cultural-debt-calculator/ai-debt-calculator.html" target="_blank" style="
+      background: linear-gradient(135deg, #091E42 0%, #0D2B6E 25%, #1A5CB8 55%, #00B4A6 80%, #5BC8C0 100%);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    ">Calculate AI Debt →</a>
   </div>
 
   <div class="cta">
@@ -458,16 +503,18 @@
     document.getElementById('vpTotal').textContent          = fmt(get('total'));
     document.getElementById('vpIncivilCost').textContent    = fmt(get('ic'));
     document.getElementById('vpChallengerCost').textContent = fmt(get('cc'));
-    document.getElementById('vpVagueCost').textContent      = fmt(get('vc'));
     document.getElementById('vpAttritionCost').textContent  = fmt(get('ac'));
+    document.getElementById('vpDecisionCost').textContent   = fmt(get('dc'));
     document.getElementById('vpFeedbackCost').textContent   = fmt(get('fc'));
     document.getElementById('vpShadowCost').textContent     = fmt(get('sc'));
-    document.getElementById('vpIncivilPct').textContent     = (p.get('ip') || '—') + '%';
-    document.getElementById('vpChallengerPct').textContent  = (p.get('cp') || '—') + '%';
-    document.getElementById('vpVaguePct').textContent       = (p.get('vp') || '—') + '%';
-    document.getElementById('vpLatePct').textContent        = (p.get('lp') || '—') + '%';
-    document.getElementById('vpFeedbackPct').textContent    = (p.get('fp') || '—') + '%';
-    document.getElementById('vpShadowPct').textContent      = (p.get('sp') || '—') + '%';
+
+    // Wire AI Debt link — pass employees and salary from calculator params
+    const aiLink = document.getElementById('aiDebtLink');
+    if (aiLink) {
+      const emp = p.get('ip') || '';
+      const sal = p.get('vp') || '';
+      aiLink.href = `https://Armers-ops.github.io/cultural-debt-calculator/ai-debt-calculator.html?employees=${emp}&salary=${sal}`;
+    }
 
     const avg    = parseFloat(p.get('avg')) || 0;
     const sevPct = Math.min(avg * 200, 100);
